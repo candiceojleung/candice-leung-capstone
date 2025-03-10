@@ -6,11 +6,14 @@ What is your app? Give a brief description in a couple of sentences.
 
 ### Problem Space
 
-Why is your app needed? Give any background information around any pain points or other reasons.
+Misdiagnosis is a significant issue in women's health, particularly concerning reproductive health conditions. Medical education has historically been centered on male physiology, leading to gaps in understanding female-specific conditions. This results in symptoms being overlooked or misattributed. Furthermore women's health symptoms are frequently dismissed as stress, hormonal changes, or psychological issues.
+
+1 in 4 women (24%) surveyed experienced a misdiagnosis of a gynaecological condition, including endometriosis, PCOS, pregnancy, ovarian cysts, and period pain. Endometriosis is the most frequently misdiagnosed gynaecological condition, affecting nearly 1 in 10 women. 75.2% of endometriosis patients reported being misdiagnosed with another physical health (95.1%) and/or mental health problem (49.5%). PCOS (Polycystic Ovary Syndrome) is also highly correlated with disorders such as Type 2 diabetes, increased risk of heart disease, sleep apnea, and mood disorders. 
 
 ### User Profile
 
-Who will use your app? How will they use it? Add any special considerations that your app must take into account.
+The web application can really be used by all women who may be experiencing reproductive, physical health or mental health conditions. Users can choose which page they'd like to navigate to add in symptoms and can simply utilize the ones that are applicable to them. The app will make note on days where symptoms are most severe. This ensures users can accurately display information to medical professionals and observe trends throughout their usage of the application. 
+
 
 ### Features
 
