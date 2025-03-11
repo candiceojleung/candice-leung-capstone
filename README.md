@@ -31,12 +31,9 @@ The web application can be used by folks who wish to record their reproductive h
 
 **Visual Representation**
 - The calendar view will highlight each day based on the most severe symptom category logged. This will help users identify trends:
-
-    - Physical Symptoms Dominant: A specific color (e.g., red).
-
-    - Mental Health Dominant: A different color (e.g., blue).
-
-    - All Symptoms Severe: Another distinct color (e.g., purple).
+   - Physical Symptoms Dominant: A specific color (e.g., red).
+   - Mental Health Dominant: A different color (e.g., blue).
+   - All Symptoms Severe: Another distinct color (e.g., purple).
 
 **Additional Resources**
 - Users will also be able to navigate to a resources page and find more information on different health conditions and tools to help manage symptoms.- 
@@ -81,7 +78,13 @@ The web application can be used by folks who wish to record their reproductive h
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
+Inspiration for website layout and toggles: 
+#### Home Page
+![](./src/assets/images/homepage-inspo.png)
+![](./src/assets/images/calendar-inspo.png)
+![](./src/assets/images/log-entry-inspo.png)
+![](./src/assets/images/resource-display-inspo.png)
+
 
 ### Data
 
@@ -134,7 +137,7 @@ Response:
 ```
 
 ***Health Logs:***
-**GET** /logs: Retrieve all logs for a user (parameters: user ID).
+**GET** /logs /:id : Retrieve logs for a user on specific day (parameters: log ID).
 Request GET /logs?userId=1: 
 ```
   {
@@ -149,20 +152,6 @@ Request GET /logs?userId=1:
     "severityRating": {
       "physical": 3,
       "mental": 2
-    }
-  },
-  {
-    "logId": 102,
-    "userId": 1,
-    "date": "2025-03-11",
-    "symptoms": {
-      "physical": ["fatigue"],
-      "mental": ["stressed"]
-    },
-    "flowType": null,
-    "severityRating": {
-      "physical": 2,
-      "mental": 3
     }
   }
 ```
@@ -239,20 +228,67 @@ Response Example:
   }
 ```
 
-[!NOTE]
+>[!NOTE]
 - All endpoints require authentication via a JWT token in the Authorization header (e.g., Authorization: Bearer <token>).
 - Severity ratings are on a scale of 1 (mild) to 3 (severe).
 - Categories for resources can include topics like mental health (categoryId:1), physical symptoms (categoryId:2), or general health tips (categoryId:3).
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation working back from the capstone due date. 
+***WEEK 1***
+***Initialize project:*** 
+- Create client
+  - react project with routes and boilerplate pages
+- Create server
+  - express project with routing, with placeholder 200 responses
+
+***Work on backend:***
+- Create table
+- Create migrations
+- Create content to populate database with 
+- Run seed 
+- Deploy client and server projects so all commits will be reflected in production
+
+***Work on frontend:***
+**Feature: Create account**
+  - Implement register page + form
+  - Create POST /users/register endpoint
+**Feature: Login**
+  - Implement login page + form
+  - Create POST /users/login endpoint
+**Feature: Implement JWT tokens**
+  - Server: Update expected requests / responses on protected endpoints
+  - Client: Store JWT in local storage, include JWT on axios calls
+
+***WEEKEND 1***
+**Feature: Calendar** 
+  - Generate functionality to highlight severity in calendar view
+  - Allow users to click into specific days and GET log for the day
+
+***WEEK 2***
+**Feature: Symptom Tracker**
+  - Create preselected options
+  - Create POST request to log entries
+  - Create PUT request to update entries
+  - Create DELETE request to delete entries 
+  - States for add & update log entries
+**Feature: HomePage**
+  - create homepage 
+  - link to other pages 
+**Feature: Resource Page**
+  - Create sample articles, and resources 
+
+***WEEKEND 2***
+- Bug fixes
+
+- DEMO DAY
 
 ---
-
 ## Future Implementations
-- implementing a chat bot to answer questions and find resources for users 
-- implement a food tracker and utilize an external api to record nutritional value to better help educate users on what food is best for their medical conditions 
-- create a community channel for users to share their experiences 
+- Implementing a chat bot to answer questions and find resources for users 
+- Implement a food tracker and utilize an external api to record nutritional value to better help educate users on what food is best for their medical conditions 
+- Implement a sleep, water, weight tracker as well 
+- Show statistics on changes in the above metrics 
+- Create a community page for users to share their experiences 
 
 
