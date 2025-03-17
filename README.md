@@ -55,14 +55,16 @@ https://odphp.health.gov/our-work/national-health-initiatives/health-literacy/co
 - Overview of the app's purpose and features
 - Calendar 
 - Resources preview 
-- Footer with contact information for technical support 
+- Footer with contact information for technical support
 
+On the Homepage there will be the:  
 **Tracker**
 - Menstrual cycle tracking (e.g., period start/end, flow type)
 - Physical symptom logging (e.g., cramps, fatigue)
 - Mental health logging (e.g., mood tracking)
 - Color-coded calendar view to visualize symptom severity trends
 
+There will then be a second page: 
 **Resources Page**
 - Articles and guides on reproductive health conditions (e.g., endometriosis, PCOS)
 - Tips for managing symptoms effectively
@@ -106,7 +108,7 @@ Request GET /logs?userId=1:
     "date": "2025-03-10",
     "symptoms": {
       "physical": ["bloating", "cramps"],
-      "mental": ["anxious"]
+      "mental": ["obsessive thoughts"]
     },
     "flowType": "Heavy",
   }
@@ -119,7 +121,7 @@ Request:
   "date": "2025-03-12",
   "symptoms": {
     "physical": ["headaches", "nausea"],
-    "mental": ["content"]
+    "mental": ["irritable"]
   },
   "flowType": null,
 
@@ -140,7 +142,7 @@ Request: PUT/logs/103
   "updatedData": {
     "symptoms": {
       "physical": ["headaches"],
-      "mental": ["happy"]
+      "mental": ["anxious"]
     }
   }
 }
