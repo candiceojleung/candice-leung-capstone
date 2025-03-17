@@ -106,7 +106,7 @@ Request GET /logs?userId=1:
     "date": "2025-03-10",
     "symptoms": {
       "physical": ["bloating", "cramps"],
-      "mental": ["anxious"]
+      "mental": ["obsessive thoughts"]
     },
     "flowType": "Heavy",
   }
@@ -119,7 +119,7 @@ Request:
   "date": "2025-03-12",
   "symptoms": {
     "physical": ["headaches", "nausea"],
-    "mental": ["content"]
+    "mental": ["irritable"]
   },
   "flowType": null,
 
@@ -140,7 +140,7 @@ Request: PUT/logs/103
   "updatedData": {
     "symptoms": {
       "physical": ["headaches"],
-      "mental": ["happy"]
+      "mental": ["anxious"]
     }
   }
 }
