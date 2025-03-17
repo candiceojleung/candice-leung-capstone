@@ -1,9 +1,9 @@
-import Calendar from "./Calendar";
+import Calendar from "../../components/Calendar/Calendar";
 
 function HomePage() {
   return (
     <div>
-      <Calendar />
+      <Calendar userId={1}/>
     </div>
   );
 }
