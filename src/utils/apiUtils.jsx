@@ -69,12 +69,22 @@ export const getAllPeriodLogs = async (userId) => {
 
 export const getPeriodLogByDate = async (userId, date) => {
   try {
-    const response = await axios.get(
-      `${BASE_URL}/api/log/user/${userId}/date/${date}`
-    );
-    return response.data;
+    const response = await axios.get(`${BASE_URL}/api/log/user/${userId}/date/${date}`);
+    if (response.data) {
+      return {
+        date: date,
+        has_period: response.data.has_period || false,
+        flow: response.data.flow || null,
+        physicalSymptoms: response.data.physicalSymptoms || [],
+        mentalConditions: response.data.mentalConditions || []
+      };
+    }
+    return null; 
   } catch (error) {
-    console.error("Error fetching period log:", error);
+    console.error("Error fetching period log by date:", error);
+    if (error.response && error.response.status === 404) {
+      return null; 
+    }
     throw error;
   }
 };
