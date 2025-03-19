@@ -49,4 +49,29 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
 
     fetchData();
   }, [userId, selectedDate]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+
+    const logData = {
+      has_period: hasPeriod,
+      flow: hasPeriod ? flow : null,
+      physicalSymptoms,
+      mentalConditions
+    };
+
+    try {
+      let response;
+      if (existingLog) {
+        response = await updatePeriodLog(userId, formattedDate, logData);
+      } else {
+        response = await createPeriodLog(userId, formattedDate, logData);
+      }
+      onSubmit(response);
+    } catch (error) {
+      setError('Failed to save log. Please try again.');
+      console.error('Error submitting log:', error);
+    }
+  };
 }
