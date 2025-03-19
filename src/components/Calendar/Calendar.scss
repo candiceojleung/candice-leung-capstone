@@ -95,48 +95,14 @@
     cursor:pointer; 
     text-shadow: 0 .5rem 1rem rgba(0,0,0, 0.2)
   }
+  &.has-log {
+    background-color: #ffcccb; // Light red background for days with logs
+    border-radius: 50%;
+  }
+
 }
 
 .event{
-    width: 100%; 
-    height: 7rem; 
-    background-color: #E0BBA5; 
-    padding: 1.5rem; 
-    border-radius:1rem; 
-    display:flex; 
-    align-items:center; 
-    margin-bottom: 2rem; 
-    position:relative; 
-
-    &__date-wrapper{
-        display:flex; 
-        flex-direction:column;
-        align-items:center; 
-        width: 25%; 
-        border-right:.1rem solid rgba(255,255,255, 0.5);
-    }
-
-    &__date{
-        font-size: clamp(1rem, 1cqi, 1.2rem);
-        color:#F6F4F3; 
-    }
-
-    &__time{
-        font-size: clamp(1.3rem, 1cqi, 1.6rem);
-        line-height: 4rem;
-        font-weight:bold; 
-        color: #F6F4F3; 
-    }
-
-    &__text{
-        font-size: clamp(1.2rem, 1cqi, 1.4rem);
-        line-height:2rem; 
-        color:#F6F4F3; 
-        width:75%; 
-        padding: 0 3rem 0 1rem; 
-        overflow-wrap: break-word; 
-    }
-
     &__btns{
         position:absolute; 
         top:50%; 
@@ -145,10 +111,10 @@
         display:flex; 
         flex-direction:column; 
         row-gap:1rem; 
-        cursor:pointer; 
-
+        cursor:pointer;
 
     }
 }
+
 
   

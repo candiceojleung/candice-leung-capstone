@@ -124,3 +124,23 @@ export const deletePeriodLog = async (userId, date) => {
     throw error;
   }
 };
+
+export const getPhysicalSymptoms = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/physical-symptoms`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching physical symptoms:", error);
+    throw error;
+  }
+};
+
+export const getMentalConditions = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/mental-conditions`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching mental conditions:", error);
+    throw error;
+  }
+};
