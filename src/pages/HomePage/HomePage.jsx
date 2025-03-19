@@ -2,7 +2,7 @@ import Calendar from "../../components/Calendar/Calendar";
 
 function HomePage() {
   return (
-    <div>
+    <div className="container">
       <Calendar userId={1}/>
     </div>
   );
