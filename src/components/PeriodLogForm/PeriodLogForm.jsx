@@ -137,7 +137,7 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
         <label className="period-log-form__label">Any symptoms?</label>
         <div className="period-log-form__symptom-group">
           {physicalSymptomOptions.map((symptom) => (
-            <SymptomButton
+            <SymptomButtons
               key={symptom.id}
               symptom={symptom}
               isSelected={physicalSymptoms.includes(symptom.name)}
@@ -161,7 +161,7 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
         <label className="period-log-form__label">How are you feeling?</label>
         <div className="period-log-form__symptom-group">
           {mentalConditionOptions.map((condition) => (
-            <SymptomButton
+            <SymptomButtons
               key={condition.id}
               symptom={condition}
               isSelected={mentalConditions.includes(condition.name)}
