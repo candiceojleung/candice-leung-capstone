@@ -1,0 +1,23 @@
+.symptom-button {
+    margin: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #dfb389; 
+    border-radius: 20px;
+    background-color: #b56e52; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #E3E0DB; 
+  
+    &.selected {
+      background-color: #dfb389; 
+      color: #E3E0DB; 
+    }
+  
+    &:hover {
+      background-color: #c57b6a; 
+    }
+  
+    &.selected:hover {
+      background-color: #b56e52; 
+    }
+  }
