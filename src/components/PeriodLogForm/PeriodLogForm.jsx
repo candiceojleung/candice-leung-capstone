@@ -74,4 +74,21 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
       console.error('Error submitting log:', error);
     }
   };
+
+  const handleDelete = async () => {
+    if (!existingLog) return;
+
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+    try {
+      await deletePeriodLog(userId, formattedDate);
+      onSubmit(null); 
+    } catch (error) {
+      setError('Failed to delete log. Please try again.');
+      console.error('Error deleting log:', error);
+    }
+  };
+
+  if (isLoading) return <div className="period-log-form__loading">Loading...</div>;
+  if (error) return <div className="period-log-form__error">{error}</div>;
+
 }
