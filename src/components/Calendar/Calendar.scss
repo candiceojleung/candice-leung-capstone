@@ -1,13 +1,12 @@
-.bx{
-  font-size:1.6rem; 
-  cursor:pointer; 
-
+.bx {
+  font-size: 1.6rem;
+  cursor: pointer;
 }
 
 .calendar {
-  width: 60%;
+  width: 80%;
   min-width: 90vmin;
-  aspect-ratio: 3/2;
+  aspect-ratio: 4/2;
   background-color: #b56e52;
   padding: 3rem;
   border-radius: 3rem;
@@ -28,7 +27,6 @@
     border-radius: 20rem;
     filter: blur(4rem);
   }
-
   &__container {
     width: 40%;
   }
@@ -38,17 +36,21 @@
     font-size: clamp(1rem, 1.5cqi, 2.5rem);
   }
 
+  &__wrapper {
+    display: flex;
+    gap: 12px;
+  }
+
   &__navigate {
+    width: 90%;
     display: flex;
     align-items: center;
-    column-gap: 1rem;
-    margin: 3.5rem 0;
+    justify-content: space-between;
   }
 
   &__buttons {
     display: flex;
     column-gap: 1rem;
-    margin-left: auto;
     font-size: 2rem;
     cursor: pointer;
   }
@@ -64,26 +66,14 @@
     font-size: clamp (1rem, 0.8cqi, 1.3rem);
     font-weight: bold;
     text-transform: uppercase;
-    color: #E3E0DB; 
+    color: #e3e0db;
     display: flex;
-    justify-content: center; 
   }
 
   &__days {
-    display: flex;
-    flex-wrap: wrap;
-    // display: grid;
-    // grid-template-columns: repeat(7, 1.5fr);
+    display: grid;
+    grid-template-columns: repeat(7, 1.5fr);
   }
-
-
-  .calendar__empty, .calendar__number {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
 
   &__number {
     font-size: clamp(1.2rem, 1cqi, 1.6rem);
@@ -92,29 +82,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor:pointer; 
-    text-shadow: 0 .5rem 1rem rgba(0,0,0, 0.2)
-  }
-  &.has-log {
-    background-color: #ffcccb; // Light red background for days with logs
-    border-radius: 50%;
-  }
-
-}
-
-.event{
-    &__btns{
-        position:absolute; 
-        top:50%; 
-        transform: translateY(-50%);
-        right:1rem; 
-        display:flex; 
-        flex-direction:column; 
-        row-gap:1rem; 
-        cursor:pointer;
-
+    padding: 8px 0;
+    cursor: pointer;
+    text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) &--entry {
+      background-color: #ffcccb;
+      border-radius: 50%;
     }
+  }
 }
 
-
-  
+.event {
+  &__btns {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    cursor: pointer;
+  }
+}

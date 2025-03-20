@@ -1,7 +1,7 @@
 import "./Calendar.scss";
-import { useState } from "react";
-import PeriodLogForm from "./PeriodLogForm";
-import { getAllPeriodLogs } from "../utils/api";
+import { useState, useEffect } from "react";
+import PeriodLogForm from "../PeriodLogForm/PeriodLogForm";
+import { getAllPeriodLogs, getPeriodLogByDate } from "../../utils/apiUtils";
 
 function Calendar({ userId }) {
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
@@ -27,6 +27,13 @@ function Calendar({ userId }) {
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [periodLogs, setPeriodLogs] = useState({});
+  const [selectedLog, setSelectedLog] = useState(null);
+  const [error, setError] = useState(null);
+  const [allSymptoms, setAllSymptoms] = useState({ physical: [], mental: [] });
+
   const prevMonth = () => {
     setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
     setCurrentYear((prevYear) =>
@@ -41,33 +48,53 @@ function Calendar({ userId }) {
     );
   };
 
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-  const [periodLogs, setPeriodLogs] = useState({});
-
   useEffect(() => {
     const fetchPeriodLogs = async () => {
       try {
-        const logs = await getAllPeriodLogs(userId);
-        const logsMap = logs.reduce((acc, log) => {
-          acc[log.date] = log;
-          return acc;
-        }, {});
+        const response = await getAllPeriodLogs(userId);
+        console.log("API Response:", response); // Log the entire response
+
+        let logsMap = {};
+        if (Array.isArray(response)) {
+          response.forEach((log) => {
+            logsMap[log.date] = log;
+          });
+        } else if (typeof response === "object" && response !== null) {
+          logsMap = response;
+        } else {
+          throw new Error("Unexpected response format from API");
+        }
+
         setPeriodLogs(logsMap);
+        setError(null);
       } catch (error) {
         console.error("Error fetching period logs:", error);
+        setError("Failed to fetch period logs. Please try again.");
       }
     };
 
     fetchPeriodLogs();
   }, [userId]);
 
-  const handleDateClick = (day) => {
-    const selectedDate = new Date(currentYear, currentMonth, day);
-    setSelectedDate(selectedDate);
-    setShowForm(true);
-  };
+  const handleDateClick = async (day) => {
+    const selectedDateObj = new Date(currentYear, currentMonth, day);
+    const formattedDate = selectedDateObj.toISOString().split("T")[0];
+    try {
+      const logData = await getPeriodLogByDate(userId, formattedDate);
 
+      setSelectedDate(selectedDateObj);
+      setSelectedLog(logData || null);
+
+      setAllSymptoms({
+        physical: logData?.allPhysicalSymptoms || [],
+        mental: logData?.allMentalConditions || [],
+      });
+
+      setShowForm(true);
+    } catch (error) {
+      console.error("Error fetching period log for selected date:", error);
+    }
+  };
   const handleFormSubmit = (logData) => {
     setPeriodLogs((prev) => ({
       ...prev,
@@ -85,8 +112,10 @@ function Calendar({ userId }) {
       <div className="calendar__container">
         <div className="calendar__heading">
           <div className="calendar__navigate">
+            <div className="calendar__wrapper">
             <h2 className="calendar__month">{monthsOfYear[currentMonth]}</h2>
             <h2 className="calendar__year">{currentYear}</h2>
+            </div>
             <div className="calendar__buttons">
               <i className="bx bx-chevron-left" onClick={prevMonth}></i>
               <i className="bx bx-chevron-right" onClick={nextMonth}></i>
@@ -111,7 +140,7 @@ function Calendar({ userId }) {
             const hasLog = periodLogs[date];
             return (
               <span
-                className={`calendar__number ${hasLog ? "has-log" : ""}`}
+                className={`calendar__number ${hasLog ? "calendar__number--entry" : ""}`}
                 key={day + 1}
                 onClick={() => handleDateClick(day + 1)}
               >
@@ -127,13 +156,10 @@ function Calendar({ userId }) {
           onClose={handleFormClose}
           userId={userId}
           selectedDate={selectedDate}
+          existingLog={selectedLog}
+          allSymptoms={allSymptoms}
         />
       )}
-
-      <div className="event__btns">
-        <i className="bx bxs-edit-alt"></i>
-        <i className="bx bxs-message-alt-x"></i>
-      </div>
     </div>
   );
 }
