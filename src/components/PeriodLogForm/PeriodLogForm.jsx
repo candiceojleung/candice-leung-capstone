@@ -1,62 +1,44 @@
 import React, { useState, useEffect } from "react";
 import {
-  getPeriodLogByDate,
   createPeriodLog,
   updatePeriodLog,
   deletePeriodLog,
-  getPhysicalSymptoms,
-  getMentalConditions,
-} from "../utils/api";
+} from "../../utils/apiUtils";
 import "./PeriodLogForm.scss";
 import SymptomButtons from "../SymptomButtons/SymptomButtons";
 
-function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
-  const [hasPeriod, setHasPeriod] = useState(false);
-  const [flow, setFlow] = useState("");
-  const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
-  const [mentalConditions, setMentalConditions] = useState([]);
-  const [physicalSymptomOptions, setPhysicalSymptomOptions] = useState([]);
-  const [mentalConditionOptions, setMentalConditionOptions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+function PeriodLogForm({
+  onSubmit,
+  onClose,
+  userId,
+  selectedDate,
+  existingLog,
+  allSymptoms,
+}) {
+  const [hasPeriod, setHasPeriod] = useState(existingLog?.has_period || false);
+  const [flow, setFlow] = useState(existingLog?.flow || "");
+  const [physicalSymptoms, setPhysicalSymptoms] = useState(
+    existingLog?.physicalSymptoms || []
+  );
+  const [mentalConditions, setMentalConditions] = useState(
+    existingLog?.mentalConditions || []
+  );
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [existingLog, setExistingLog] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const formattedDate = selectedDate.toISOString().split("T")[0];
-
-        const logData = await getPeriodLogByDate(userId, formattedDate);
-        if (logData) {
-          setExistingLog(logData);
-          setHasPeriod(logData.has_period);
-          setFlow(logData.flow || "");
-          setPhysicalSymptoms(logData.physicalSymptoms || []);
-          setMentalConditions(logData.mentalConditions || []);
-        } else {
-          setExistingLog(null);
-          setHasPeriod(false);
-          setFlow("");
-          setPhysicalSymptoms([]);
-          setMentalConditions([]);
-        }
-
-        const physicalSymptomsData = await getPhysicalSymptoms();
-        setPhysicalSymptomOptions(physicalSymptomsData);
-
-        const mentalConditionsData = await getMentalConditions();
-        setMentalConditionOptions(mentalConditionsData);
-      } catch (err) {
-        setError("Failed to load data. Please try again.");
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [userId, selectedDate]);
+    if (existingLog) {
+      setHasPeriod(existingLog.has_period);
+      setFlow(existingLog.flow || "");
+      setPhysicalSymptoms(existingLog.physicalSymptoms || []);
+      setMentalConditions(existingLog.mentalConditions || []);
+    } else {
+      setHasPeriod(false);
+      setFlow("");
+      setPhysicalSymptoms([]);
+      setMentalConditions([]);
+    }
+  }, [existingLog]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +52,7 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
     };
 
     try {
+      setIsLoading(true);
       let response;
       if (existingLog) {
         response = await updatePeriodLog(userId, formattedDate, logData);
@@ -80,6 +63,8 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
     } catch (error) {
       setError("Failed to save log. Please try again.");
       console.error("Error submitting log:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -88,122 +73,125 @@ function PeriodLogForm({ onSubmit, onClose, userId, selectedDate }) {
 
     const formattedDate = selectedDate.toISOString().split("T")[0];
     try {
+      setIsLoading(true);
       await deletePeriodLog(userId, formattedDate);
       onSubmit(null);
     } catch (error) {
       setError("Failed to delete log. Please try again.");
       console.error("Error deleting log:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  if (isLoading)
-    return <div className="period-log-form__loading">Loading...</div>;
-  if (error) return <div className="period-log-form__error">{error}</div>;
+  if (isLoading) return <div className="form__loading">Loading...</div>;
+  if (error) return <div className="form__error">{error}</div>;
 
   return (
-    <form className="period-log-form" onSubmit={handleSubmit}>
-      <h2 className="period-log-form__title">
+    <form className="form" onSubmit={handleSubmit}>
+      <h2 className="form__title">
         {existingLog ? "Update Period Log" : "Create Period Log"}
       </h2>
-      <div className="period-log-form__field">
-        <label className="period-log-form__label">
-          Do you have your period today?
-          <input
-            type="checkbox"
-            checked={hasPeriod}
-            onChange={(e) => setHasPeriod(e.target.checked)}
-            className="period-log-form__checkbox"
+      <div className="form__field">
+        <label className="form__label">Do you have your period today?</label>
+        <div className="form__symptom-group">
+          <SymptomButtons
+            symptom={{ id: "yes", name: "Yes" }}
+            isSelected={hasPeriod}
+            onClick={() => setHasPeriod(true)}
           />
-        </label>
+          <SymptomButtons
+            symptom={{ id: "no", name: "No" }}
+            isSelected={!hasPeriod}
+            onClick={() => setHasPeriod(false)}
+          />
+        </div>
       </div>
       {hasPeriod && (
-        <div className="period-log-form__field">
-          <label className="period-log-form__label">
-            How heavy is your flow?
-            <select
-              value={flow}
-              onChange={(e) => setFlow(e.target.value)}
-              className="period-log-form__select"
-            >
-              <option value="">Select</option>
-              <option value="light">Light</option>
-              <option value="medium">Medium</option>
-              <option value="heavy">Heavy</option>
-            </select>
-          </label>
+        <div className="form__field">
+          <label className="form__label">How heavy is your flow?</label>
+          <div className="form__symptom-group">
+            {["light", "medium", "heavy"].map((flowType) => (
+              <SymptomButtons
+                key={flowType}
+                symptom={{
+                  id: flowType,
+                  name: flowType.charAt(0).toUpperCase() + flowType.slice(1),
+                }}
+                isSelected={flow === flowType}
+                onClick={() => setFlow(flowType)}
+              />
+            ))}
+          </div>
         </div>
       )}
-      <div className="period-log-form__field">
-        <label className="period-log-form__label">Any symptoms?</label>
-        <div className="period-log-form__symptom-group">
-          {physicalSymptomOptions.map((symptom) => (
+      <div className="form__field">
+        <label className="form__label">Any physical symptoms?</label>
+        <div className="form__symptom-group">
+          {allSymptoms.physical.map((symptom) => (
             <SymptomButtons
               key={symptom.id}
               symptom={symptom}
               isSelected={physicalSymptoms.includes(symptom.name)}
-              onClick={(selectedSymptom) => {
-                if (physicalSymptoms.includes(selectedSymptom.name)) {
+              onClick={() => {
+                if (physicalSymptoms.includes(symptom.name)) {
                   setPhysicalSymptoms(
-                    physicalSymptoms.filter((s) => s !== selectedSymptom.name)
+                    physicalSymptoms.filter((s) => s !== symptom.name)
                   );
                 } else {
-                  setPhysicalSymptoms([
-                    ...physicalSymptoms,
-                    selectedSymptom.name,
-                  ]);
+                  setPhysicalSymptoms([...physicalSymptoms, symptom.name]);
                 }
               }}
             />
           ))}
         </div>
       </div>
-      <div className="period-log-form__field">
-        <label className="period-log-form__label">How are you feeling?</label>
-        <div className="period-log-form__symptom-group">
-          {mentalConditionOptions.map((condition) => (
+      <div className="form__field">
+        <label className="form__label">How are you feeling?</label>
+        <div className="form__symptom-group">
+          {allSymptoms.mental.map((condition) => (
             <SymptomButtons
               key={condition.id}
               symptom={condition}
               isSelected={mentalConditions.includes(condition.name)}
-              onClick={(selectedCondition) => {
-                if (mentalConditions.includes(selectedCondition.name)) {
+              onClick={() => {
+                if (mentalConditions.includes(condition.name)) {
                   setMentalConditions(
-                    mentalConditions.filter((c) => c !== selectedCondition.name)
+                    mentalConditions.filter((c) => c !== condition.name)
                   );
                 } else {
-                  setMentalConditions([
-                    ...mentalConditions,
-                    selectedCondition.name,
-                  ]);
+                  setMentalConditions([...mentalConditions, condition.name]);
                 }
               }}
             />
           ))}
         </div>
       </div>
-      <div className="period-log-form__actions">
-        <button
-          type="submit"
-          className="period-log-form__button period-log-form__button--submit"
-        >
+      <div className="form__actions">
+        <button type="submit" className="form__button form__button--submit">
           {existingLog ? "Update" : "Save"}
+          <i className="bx bxs-edit-alt"></i>
+         
+        </button>
+        <button
+          type="button"
+          onClick={onClose}
+          className="form__button form__button--cancel"
+        >
+          Cancel
+          <i className="bx bxs-message-alt-x"></i>
         </button>
         {existingLog && (
           <button
             type="button"
             onClick={handleDelete}
-            className="period-log-form__button period-log-form__button--delete"
+            className="form__button form__button--delete"
           >
             Delete
+            <i className='bx bxs-trash'></i>
           </button>
         )}
-        <button
-          type="button"
-          onClick={onClose}
-          className="period-log-form__button period-log-form__button--cancel"
-        >
-          Cancel
-        </button>
+      
       </div>
     </form>
   );
