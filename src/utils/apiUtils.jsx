@@ -62,28 +62,20 @@ export const getAllPeriodLogs = async (userId) => {
     const response = await axios.get(`${BASE_URL}/api/log/user/${userId}`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching all period logs:", error);
+    console.error("Error in getAllPeriodLogs:", error.response || error);
     throw error;
   }
 };
 
+
 export const getPeriodLogByDate = async (userId, date) => {
   try {
     const response = await axios.get(`${BASE_URL}/api/log/user/${userId}/date/${date}`);
-    if (response.data) {
-      return {
-        date: date,
-        has_period: response.data.has_period || false,
-        flow: response.data.flow || null,
-        physicalSymptoms: response.data.physicalSymptoms || [],
-        mentalConditions: response.data.mentalConditions || []
-      };
-    }
-    return null; 
+    return response.data;
   } catch (error) {
     console.error("Error fetching period log by date:", error);
     if (error.response && error.response.status === 404) {
-      return null; 
+      return null;
     }
     throw error;
   }
@@ -121,26 +113,6 @@ export const deletePeriodLog = async (userId, date) => {
     return true;
   } catch (error) {
     console.error("Error deleting period log:", error);
-    throw error;
-  }
-};
-
-export const getPhysicalSymptoms = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/api/physical-symptoms`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching physical symptoms:", error);
-    throw error;
-  }
-};
-
-export const getMentalConditions = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/api/mental-conditions`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching mental conditions:", error);
     throw error;
   }
 };
