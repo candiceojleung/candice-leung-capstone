@@ -2,14 +2,12 @@
 .form {
     &__title {
       font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: #E3E0DB; 
+      margin: 3rem 0 1rem 0;
     }
 
     &__label {
       display: block;
       margin-bottom: 0.5rem;
-      color: #E3E0DB; 
     }
   
     &__symptom-group {
@@ -23,8 +21,6 @@
       padding: 0.5rem;
       border: 1px solid #dfb389; 
       border-radius: 4px;
-      background-color: #b56e52; 
-      color: #E3E0DB; 
     }
   
     &__actions {
@@ -44,9 +40,7 @@
       justify-content: center;
       gap:8px; 
   
-      &--submit {
-        background-color: #A1876C; ; 
-        color: #E3E0DB; 
+      &--submit {    
   
         &:hover {
           background-color: #c57b6a; 
@@ -54,8 +48,6 @@
       }
   
       &--delete {
-        background-color: #f44336; 
-        color: white;
   
         &:hover {
           background-color: #da190b; 
@@ -63,8 +55,6 @@
       }
   
       &--cancel {
-        background-color: #A1876C; 
-        color: #E3E0DB; 
   
         &:hover {
           background-color: #c57b6a; 
