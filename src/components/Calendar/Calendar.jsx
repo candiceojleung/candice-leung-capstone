@@ -31,36 +31,34 @@ function Calendar({ userId }) {
   const [showForm, setShowForm] = useState(false);
   const [periodLogs, setPeriodLogs] = useState({});
   const [selectedLog, setSelectedLog] = useState(null);
-  const [error, setError] = useState(null);
   const [allSymptoms, setAllSymptoms] = useState({ physical: [], mental: [] });
+  const [error, setError] = useState(null);
 
+  // Navigate to the previous month
   const prevMonth = () => {
-    setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
-    setCurrentYear((prevYear) =>
-      currentMonth === 0 ? prevYear - 1 : prevYear
-    );
+    setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+    setCurrentYear((year) => (currentMonth === 0 ? year - 1 : year));
   };
 
+  // Navigate to the next month
   const nextMonth = () => {
-    setCurrentMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
-    setCurrentYear((prevYear) =>
-      currentMonth === 11 ? prevYear + 1 : prevYear
-    );
+    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+    setCurrentYear((year) => (currentMonth === 11 ? year + 1 : year));
   };
 
+  // Fetch all period logs when the component mounts or userId changes
   useEffect(() => {
-    const fetchPeriodLogs = async () => {
+    const fetchData = async () => {
       try {
-        const response = await getAllPeriodLogs(userId);
-        console.log("API Response:", response); // Log the entire response
+        const logsResponse = await getAllPeriodLogs(userId);
 
         let logsMap = {};
-        if (Array.isArray(response)) {
-          response.forEach((log) => {
+        if (Array.isArray(logsResponse)) {
+          logsResponse.forEach((log) => {
             logsMap[log.date] = log;
           });
-        } else if (typeof response === "object" && response !== null) {
-          logsMap = response;
+        } else if (typeof logsResponse === "object" && logsResponse !== null) {
+          logsMap = logsResponse;
         } else {
           throw new Error("Unexpected response format from API");
         }
@@ -68,33 +66,35 @@ function Calendar({ userId }) {
         setPeriodLogs(logsMap);
         setError(null);
       } catch (error) {
-        console.error("Error fetching period logs:", error);
-        setError("Failed to fetch period logs. Please try again.");
+        console.error("Error fetching data:", error);
+        setError("Failed to fetch data. Please try again.");
       }
     };
 
-    fetchPeriodLogs();
+    fetchData();
   }, [userId]);
 
+  // Handle date click to fetch log and symptom data
   const handleDateClick = async (day) => {
     const selectedDateObj = new Date(currentYear, currentMonth, day);
     const formattedDate = selectedDateObj.toISOString().split("T")[0];
     try {
-      const logData = await getPeriodLogByDate(userId, formattedDate);
+      const response = await getPeriodLogByDate(userId, formattedDate);
 
       setSelectedDate(selectedDateObj);
-      setSelectedLog(logData || null);
-
+      setSelectedLog(response.log || null); // Existing log or null
       setAllSymptoms({
-        physical: logData?.allPhysicalSymptoms || [],
-        mental: logData?.allMentalConditions || [],
+        physical: response.allPhysicalSymptoms,
+        mental: response.allMentalConditions,
       });
-
       setShowForm(true);
     } catch (error) {
       console.error("Error fetching period log for selected date:", error);
     }
   };
+
+
+  // Handle form submission
   const handleFormSubmit = (logData) => {
     setPeriodLogs((prev) => ({
       ...prev,
@@ -103,7 +103,21 @@ function Calendar({ userId }) {
     setShowForm(false);
   };
 
+  // Close the form
   const handleFormClose = () => {
+    setShowForm(false);
+  };
+
+  
+  //Delete log
+  const handleLogDelete = (deletedDate) => {
+    setPeriodLogs((prevLogs) => {
+      const updatedLogs = { ...prevLogs };
+      delete updatedLogs[deletedDate];
+      return updatedLogs;
+    });
+    setSelectedDate(null);
+    setSelectedLog(null);
     setShowForm(false);
   };
 
@@ -113,8 +127,8 @@ function Calendar({ userId }) {
         <div className="calendar__heading">
           <div className="calendar__navigate">
             <div className="calendar__wrapper">
-            <h2 className="calendar__month">{monthsOfYear[currentMonth]}</h2>
-            <h2 className="calendar__year">{currentYear}</h2>
+              <h2 className="calendar__month">{monthsOfYear[currentMonth]}</h2>
+              <h2 className="calendar__year">{currentYear}</h2>
             </div>
             <div className="calendar__buttons">
               <i className="bx bx-chevron-left" onClick={prevMonth}></i>
@@ -140,7 +154,9 @@ function Calendar({ userId }) {
             const hasLog = periodLogs[date];
             return (
               <span
-                className={`calendar__number ${hasLog ? "calendar__number--entry" : ""}`}
+                className={`calendar__number ${
+                  hasLog ? "calendar__number--entry" : ""
+                }`}
                 key={day + 1}
                 onClick={() => handleDateClick(day + 1)}
               >
@@ -154,6 +170,7 @@ function Calendar({ userId }) {
         <PeriodLogForm
           onSubmit={handleFormSubmit}
           onClose={handleFormClose}
+          onDelete={handleLogDelete}
           userId={userId}
           selectedDate={selectedDate}
           existingLog={selectedLog}
