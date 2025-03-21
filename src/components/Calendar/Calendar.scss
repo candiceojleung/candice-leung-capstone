@@ -4,10 +4,15 @@
 }
 
 .calendar {
-  padding: 1rem;
+  display: flex;
+  flex-direction:column; 
+  align-items:center; 
+  justify-content: center;
+  margin-bottom: 24px; 
 
-  &__container{
-    margin-bottom: 2rem; 
+  &__container {
+    width: 100%;
+    max-width: 400px; // Adjust this value as needed
   }
 
   &__wrapper {
@@ -15,15 +20,16 @@
     gap: 12px;
   }
 
-  &__month, &__year{
-    font-size: 20px; 
+  &__month,
+  &__year {
+    font-size: 20px;
   }
 
   &__navigate {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width:90%; 
+    padding: 0 0 20px;
   }
 
   &__buttons {
@@ -33,36 +39,70 @@
   }
 
   &__weekdays {
-    display: flex;
-    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 1rem 0;
+    width: 100%;
   }
 
   &__dayname {
-    width:100%; 
+    text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 0.9rem; // Adjust as needed
   }
 
   &__days {
     display: grid;
-    grid-template-columns: repeat(7, 1.5fr); 
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+    gap: 1px; // Add a small gap between cells
   }
 
   &__number {
-    width:calc(100%/7);
-    padding: 8px; 
+    background-color: rgba(212, 208, 209, 0.463);
+    aspect-ratio: 1 / 1; // Make each cell a square
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     cursor: pointer;
+    font-size: 1rem; // Adjust font size as needed
 
-    &--selected{
-     color:red; 
+    &--selected {
+      color: red;
     }
 
-    &--today{
-      font-weight:bold; 
+    &--today {
+      font-weight: bold;
+    }
+
+    &__message {
+      padding: 16px;
+    }
+  }
+
+  &__indicators {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  &__indicator {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+
+    &--period {
+      background-color: red;
+    }
+
+    &--physical {
+      background-color: green;
+    }
+
+    &--mental {
+      background-color: blue;
     }
   }
 }
-

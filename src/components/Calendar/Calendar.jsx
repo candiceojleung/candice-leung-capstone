@@ -4,7 +4,7 @@ import PeriodLogForm from "../PeriodLogForm/PeriodLogForm";
 import { getAllPeriodLogs, getPeriodLogByDate } from "../../utils/apiUtils";
 
 function Calendar({ userId }) {
-  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
+  const daysOfWeek = ["Sun", "Mon", "TUE", "WED", "THU", "FRI", "SAT"];
   const monthsOfYear = [
     "January",
     "February",
@@ -52,20 +52,18 @@ function Calendar({ userId }) {
     const fetchData = async () => {
       try {
         const logsResponse = await getAllPeriodLogs(userId);
-
-        let logsMap = {};
+     
         if (Array.isArray(logsResponse)) {
+          // Expecting an array
+          const logsMap = {};
           logsResponse.forEach((log) => {
-            logsMap[log.date] = log;
+            const date = new Date(log.date).toISOString().split("T")[0]; // Format date
+            logsMap[date] = log; // Assign log to correctly formatted date
           });
-        } else if (typeof logsResponse === "object" && logsResponse !== null) {
-          logsMap = logsResponse;
+          setPeriodLogs(logsMap);
         } else {
           throw new Error("Unexpected response format from API");
         }
-
-        setPeriodLogs(logsMap);
-        setError(null);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Failed to fetch data. Please try again.");
@@ -77,14 +75,14 @@ function Calendar({ userId }) {
 
   // Handle date click to fetch log and symptom data
   const handleDateClick = async (day) => {
-    setFormSuccessMessage(null); 
+    setFormSuccessMessage(null);
     const selectedDateObj = new Date(currentYear, currentMonth, day);
     const formattedDate = selectedDateObj.toISOString().split("T")[0];
     try {
       const response = await getPeriodLogByDate(userId, formattedDate);
 
       setSelectedDate(selectedDateObj);
-      setSelectedLog(response.log || null); 
+      setSelectedLog(response.log || null);
       setAllSymptoms({
         physical: response.allPhysicalSymptoms,
         mental: response.allMentalConditions,
@@ -94,7 +92,6 @@ function Calendar({ userId }) {
       console.error("Error fetching period log for selected date:", error);
     }
   };
-
 
   // Handle form submission
   const handleFormSubmit = (logData) => {
@@ -116,7 +113,6 @@ function Calendar({ userId }) {
     setShowForm(false);
   };
 
-  
   //Delete log
   const handleLogDelete = (deletedDate) => {
     setPeriodLogs((prevLogs) => {
@@ -159,12 +155,12 @@ function Calendar({ userId }) {
             const date = new Date(currentYear, currentMonth, day + 1)
               .toISOString()
               .split("T")[0];
-            const hasLog = periodLogs[date];
+            const log = periodLogs[date];
             const isSelected =
-            selectedDate &&
-            selectedDate.getDate() === day + 1 &&
-            selectedDate.getMonth() === currentMonth &&
-            selectedDate.getFullYear() === currentYear;
+              selectedDate &&
+              selectedDate.getDate() === day + 1 &&
+              selectedDate.getMonth() === currentMonth &&
+              selectedDate.getFullYear() === currentYear;
 
             const today = new Date();
             const isToday =
@@ -172,19 +168,21 @@ function Calendar({ userId }) {
               today.getMonth() === currentMonth &&
               today.getFullYear() === currentYear;
 
-
             return (
-              <span
-              className={`calendar__number ${
-                isSelected ? "calendar__number--selected" : ""
-              } ${isToday ? "calendar__number--today" : ""}`}
+              <div
+              className={`calendar__number ${isSelected ? "calendar__number--selected" : ""} ${isToday ? "calendar__number--today" : ""}`}
               key={day + 1}
               onClick={() => handleDateClick(day + 1)}
-            >
+          >
               {day + 1}
-            </span>
-            );
-          })}
+              <div className="calendar__indicators">
+                  {log?.has_period === 1 && <span className="calendar__indicator calendar__indicator--period"></span>}
+                  {log?.physicalSymptoms?.length > 0 && <span className="calendar__indicator calendar__indicator--physical"></span>}
+                  {log?.mentalConditions?.length > 0 && <span className="calendar__indicator calendar__indicator--mental"></span>}
+              </div>
+          </div>
+      );
+  })}
         </div>
       </div>
       {showForm && (
@@ -198,7 +196,7 @@ function Calendar({ userId }) {
           allSymptoms={allSymptoms}
         />
       )}
-       {formSuccessMessage && (
+      {formSuccessMessage && (
         <div className="form__message">{formSuccessMessage}</div>
       )}
     </div>
