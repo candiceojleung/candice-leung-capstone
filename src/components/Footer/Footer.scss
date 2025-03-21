@@ -80,5 +80,24 @@
         justify-content: space-between;
       }
     }
+
+    
+  &__contact {
+    margin-bottom: 1rem;
+
+    &-title {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    &-item {
+      margin-bottom: 0.25rem;
+    }
   }
+}
   
