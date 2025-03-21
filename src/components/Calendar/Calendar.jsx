@@ -152,16 +152,20 @@ function Calendar({ userId }) {
               .toISOString()
               .split("T")[0];
             const hasLog = periodLogs[date];
+            const isSelected =
+            selectedDate &&
+            selectedDate.getDate() === day + 1 &&
+            selectedDate.getMonth() === currentMonth &&
+            selectedDate.getFullYear() === currentYear;
+
             return (
               <span
-                className={`calendar__number ${
-                  hasLog ? "calendar__number--entry" : ""
-                }`}
-                key={day + 1}
-                onClick={() => handleDateClick(day + 1)}
-              >
-                {day + 1}
-              </span>
+              className={`calendar__number ${isSelected ? "calendar__number--selected" : ""}`}
+              key={day + 1}
+              onClick={() => handleDateClick(day + 1)}
+            >
+              {day + 1}
+            </span>
             );
           })}
         </div>
