@@ -1,0 +1,68 @@
+.bx {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.calendar {
+  padding: 1rem;
+
+  &__container{
+    margin-bottom: 2rem; 
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__month, &__year{
+    font-size: 20px; 
+  }
+
+  &__navigate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:90%; 
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+  }
+
+  &__weekdays {
+    display: flex;
+    margin: 3rem 0;
+  }
+
+  &__dayname {
+    width:100%; 
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1.5fr); 
+  }
+
+  &__number {
+    width:calc(100%/7);
+    padding: 8px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &--selected{
+     color:red; 
+    }
+
+    &--today{
+      font-weight:bold; 
+    }
+  }
+}
+
