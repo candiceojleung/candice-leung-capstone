@@ -4,23 +4,27 @@
 }
 
 .calendar {
-  background-color: #b56e52;
-  padding: 3rem;
+  padding: 1rem;
 
   &__wrapper {
     display: flex;
     gap: 12px;
   }
 
+  &__month, &__year{
+    font-size: 20px; 
+  }
+
   &__navigate {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width:90%; 
   }
 
   &__buttons {
     display: flex;
-    column-gap: 1rem;
+    gap: 1rem;
     cursor: pointer;
   }
 
@@ -30,26 +34,27 @@
   }
 
   &__dayname {
-    width: calc(100% / 7);
+    width:100%; 
     font-weight: bold;
     text-transform: uppercase;
   }
 
   &__days {
     display: grid;
-    grid-template-columns: repeat(7, 1.5fr);
+    grid-template-columns: repeat(7, 1.5fr); 
   }
 
   &__number {
-    width: calc(100% / 7);
+    width:calc(100%/7);
+    padding: 8px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px 0;
     cursor: pointer;
-    &--entry {
-      background-color: #ffcccb;
-      border-radius: 50%;
+
+
+    &--selected{
+     color:red; 
     }
   }
 }
