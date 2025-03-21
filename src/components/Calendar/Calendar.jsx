@@ -33,6 +33,7 @@ function Calendar({ userId }) {
   const [selectedLog, setSelectedLog] = useState(null);
   const [allSymptoms, setAllSymptoms] = useState({ physical: [], mental: [] });
   const [error, setError] = useState(null);
+  const [formSuccessMessage, setFormSuccessMessage] = useState(null);
 
   // Navigate to the previous month
   const prevMonth = () => {
@@ -76,13 +77,14 @@ function Calendar({ userId }) {
 
   // Handle date click to fetch log and symptom data
   const handleDateClick = async (day) => {
+    setFormSuccessMessage(null); 
     const selectedDateObj = new Date(currentYear, currentMonth, day);
     const formattedDate = selectedDateObj.toISOString().split("T")[0];
     try {
       const response = await getPeriodLogByDate(userId, formattedDate);
 
       setSelectedDate(selectedDateObj);
-      setSelectedLog(response.log || null); // Existing log or null
+      setSelectedLog(response.log || null); 
       setAllSymptoms({
         physical: response.allPhysicalSymptoms,
         mental: response.allMentalConditions,
@@ -100,7 +102,13 @@ function Calendar({ userId }) {
       ...prev,
       [logData.date]: logData,
     }));
-    setShowForm(false);
+    setFormSuccessMessage(
+      selectedLog ? "Log updated successfully!" : "Log saved successfully!"
+    );
+    setShowForm(false); // Close the form immediately
+    setTimeout(() => {
+      setFormSuccessMessage(null); // Clear message after 3 seconds
+    }, 3000);
   };
 
   // Close the form
@@ -158,9 +166,18 @@ function Calendar({ userId }) {
             selectedDate.getMonth() === currentMonth &&
             selectedDate.getFullYear() === currentYear;
 
+            const today = new Date();
+            const isToday =
+              today.getDate() === day + 1 &&
+              today.getMonth() === currentMonth &&
+              today.getFullYear() === currentYear;
+
+
             return (
               <span
-              className={`calendar__number ${isSelected ? "calendar__number--selected" : ""}`}
+              className={`calendar__number ${
+                isSelected ? "calendar__number--selected" : ""
+              } ${isToday ? "calendar__number--today" : ""}`}
               key={day + 1}
               onClick={() => handleDateClick(day + 1)}
             >
@@ -180,6 +197,9 @@ function Calendar({ userId }) {
           existingLog={selectedLog}
           allSymptoms={allSymptoms}
         />
+      )}
+       {formSuccessMessage && (
+        <div className="form__message">{formSuccessMessage}</div>
       )}
     </div>
   );

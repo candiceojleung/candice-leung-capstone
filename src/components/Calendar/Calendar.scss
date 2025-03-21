@@ -6,6 +6,10 @@
 .calendar {
   padding: 1rem;
 
+  &__container{
+    margin-bottom: 2rem; 
+  }
+
   &__wrapper {
     display: flex;
     gap: 12px;
@@ -52,9 +56,12 @@
     align-items: center;
     cursor: pointer;
 
-
     &--selected{
      color:red; 
+    }
+
+    &--today{
+      font-weight:bold; 
     }
   }
 }
