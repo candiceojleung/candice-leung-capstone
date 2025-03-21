@@ -21,7 +21,7 @@ function Footer() {
       },
     ];
   
-    const footerInfo = ["© 2024 periodic.ally", "contact us"];
+    const footerInfo = ["© 2025 periodic.ally", "contact us"];
   
     return (
       <section className="footer">
