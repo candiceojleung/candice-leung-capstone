@@ -62,7 +62,7 @@ export const getAllPeriodLogs = async (userId) => {
     const response = await axios.get(`${BASE_URL}/api/log/user/${userId}`);
     return response.data;
   } catch (error) {
-    console.error("Error in getAllPeriodLogs:", error.response || error);
+    console.error("Error fetching all period logs:", error);
     throw error;
   }
 };
