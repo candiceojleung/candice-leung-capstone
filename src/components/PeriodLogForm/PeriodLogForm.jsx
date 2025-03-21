@@ -112,70 +112,92 @@ function PeriodLogForm({
   if (error) return <div>{error}</div>;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{existingLog ? "Update Period Log" : "Create Period Log"}</h2>
+    <form className="form" onSubmit={handleSubmit}>
+      <h2 className="form__title">
+        {existingLog ? "Update Period Log" : "Create Period Log"}
+      </h2>
 
-      <div>
-        <label>Do you have your period today?</label>
+      <div className="form__tracker">
+        <label className="form__question">Do you have your period today?</label>
+        <div className="form__options">
         <SymptomButtons
           symptom={{ id: "yes", name: "Yes" }}
           isSelected={hasPeriod === true}
           onClick={() => setHasPeriod(true)}
+          className="form__button"
         />
         <SymptomButtons
           symptom={{ id: "no", name: "No" }}
           isSelected={hasPeriod === false}
           onClick={() => setHasPeriod(false)}
+          className="form__button"
         />
+        </div>
       </div>
 
       {hasPeriod && (
-        <div>
-          <label>How heavy is your flow?</label>
+        <div className="form__tracker">
+          <label className="form__question">How heavy is your flow?</label>
+          <div className="form__options">
           {["light", "medium", "heavy"].map((flowType) => (
             <SymptomButtons
               key={flowType}
               symptom={{ id: flowType, name: flowType }}
               isSelected={flow === flowType}
               onClick={() => setFlow(flowType)}
+              className="form__button"
             />
           ))}
+          </div>
         </div>
       )}
 
-      <div>
-        <label>Physical Symptoms</label>
+      <div className="form__tracker">
+        <label className="form__question">Any physical discomfort?</label>
+        <div className="form__options">
         {allSymptoms.physical.map((symptom) => (
           <SymptomButtons
             key={symptom.id}
             symptom={symptom}
             isSelected={physicalSymptoms.includes(symptom.name)}
             onClick={() => toggleSymptom(symptom.name, true)}
+            className="form__button"
           />
         ))}
+        </div>
       </div>
 
-      <div>
-        <label>Mental Conditions</label>
+      <div className="form__tracker">
+        <label className="form__question">How do you feel?</label>
+        <div className="form__options">
         {allSymptoms.mental.map((condition) => (
           <SymptomButtons
             key={condition.id}
             symptom={condition}
             isSelected={mentalConditions.includes(condition.name)}
             onClick={() => toggleSymptom(condition.name, false)}
+            className="form__button"
           />
         ))}
+        </div>
       </div>
-
-      <button type="submit">{existingLog ? "Update" : "Save"}</button>
-      {existingLog && (
-        <button type="button" onClick={handleDelete}>
-          Delete
+      <div className="form__submit">
+        <button className="form__actions" type="submit">
+          {existingLog ? "Update" : "Save"}
         </button>
-      )}
-      <button type="button" onClick={onClose}>
-        Cancel
-      </button>
+        {existingLog && (
+          <button
+            className="form__actions"
+            type="button"
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
+        )}
+        <button className="form__actions" type="button" onClick={onClose}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }
