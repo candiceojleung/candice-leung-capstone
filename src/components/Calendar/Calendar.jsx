@@ -2,6 +2,7 @@ import "./Calendar.scss";
 import { useState, useEffect } from "react";
 import PeriodLogForm from "../PeriodLogForm/PeriodLogForm";
 import { getAllPeriodLogs, getPeriodLogByDate } from "../../utils/apiUtils";
+import { formatDateToISO } from "../../utils/dateUtils";
 
 function Calendar({ userId }) {
   const daysOfWeek = ["Sun", "Mon", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -32,7 +33,6 @@ function Calendar({ userId }) {
   const [periodLogs, setPeriodLogs] = useState({});
   const [selectedLog, setSelectedLog] = useState(null);
   const [allSymptoms, setAllSymptoms] = useState({ physical: [], mental: [] });
-  const [error, setError] = useState(null);
   const [formSuccessMessage, setFormSuccessMessage] = useState(null);
 
   // Navigate to the previous month
@@ -47,37 +47,35 @@ function Calendar({ userId }) {
     setCurrentYear((year) => (currentMonth === 11 ? year + 1 : year));
   };
 
-  // Fetch all period logs when the component mounts or userId changes
+  // Fetch all period logs
   useEffect(() => {
     const fetchData = async () => {
       try {
         const logsResponse = await getAllPeriodLogs(userId);
-     
+
         if (Array.isArray(logsResponse)) {
-          // Expecting an array
           const logsMap = {};
           logsResponse.forEach((log) => {
-            const date = new Date(log.date).toISOString().split("T")[0]; // Format date
-            logsMap[date] = log; // Assign log to correctly formatted date
+            const date = formatDateToISO(log.date);
+            logsMap[date] = log;
           });
           setPeriodLogs(logsMap);
         } else {
-          throw new Error("Unexpected response format from API");
+          console.error("Unexpected response format from API");
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        setError("Failed to fetch data. Please try again.");
       }
     };
 
     fetchData();
-  }, [userId]);
+  }, [userId, periodLogs]);
 
-  // Handle date click to fetch log and symptom data
+  //select date, and get period log for that date
   const handleDateClick = async (day) => {
     setFormSuccessMessage(null);
     const selectedDateObj = new Date(currentYear, currentMonth, day);
-    const formattedDate = selectedDateObj.toISOString().split("T")[0];
+    const formattedDate = formatDateToISO(selectedDateObj);
     try {
       const response = await getPeriodLogByDate(userId, formattedDate);
 
@@ -99,12 +97,13 @@ function Calendar({ userId }) {
       ...prev,
       [logData.date]: logData,
     }));
+    setSelectedDate(null);
     setFormSuccessMessage(
       selectedLog ? "Log updated successfully!" : "Log saved successfully!"
     );
-    setShowForm(false); // Close the form immediately
+    setShowForm(false);
     setTimeout(() => {
-      setFormSuccessMessage(null); // Clear message after 3 seconds
+      setFormSuccessMessage(null);
     }, 3000);
   };
 
@@ -126,7 +125,7 @@ function Calendar({ userId }) {
   };
 
   return (
-    <div className="calendar">
+    <section className="calendar">
       <div className="calendar__container">
         <div className="calendar__heading">
           <div className="calendar__navigate">
@@ -152,9 +151,9 @@ function Calendar({ userId }) {
             <span key={`empty-${index}`} />
           ))}
           {[...Array(daysInMonth).keys()].map((day) => {
-            const date = new Date(currentYear, currentMonth, day + 1)
-              .toISOString()
-              .split("T")[0];
+            const date = formatDateToISO(
+              new Date(currentYear, currentMonth, day + 1)
+            );
             const log = periodLogs[date];
             const isSelected =
               selectedDate &&
@@ -170,19 +169,27 @@ function Calendar({ userId }) {
 
             return (
               <div
-              className={`calendar__number ${isSelected ? "calendar__number--selected" : ""} ${isToday ? "calendar__number--today" : ""}`}
-              key={day + 1}
-              onClick={() => handleDateClick(day + 1)}
-          >
-              {day + 1}
-              <div className="calendar__indicators">
-                  {log?.has_period === 1 && <span className="calendar__indicator calendar__indicator--period"></span>}
-                  {log?.physicalSymptoms?.length > 0 && <span className="calendar__indicator calendar__indicator--physical"></span>}
-                  {log?.mentalConditions?.length > 0 && <span className="calendar__indicator calendar__indicator--mental"></span>}
+                className={`calendar__number ${
+                  isSelected ? "calendar__number--selected" : ""
+                } ${isToday ? "calendar__number--today" : ""}`}
+                key={day + 1}
+                onClick={() => handleDateClick(day + 1)}
+              >
+                {day + 1}
+                <div className="calendar__indicators">
+                  {log?.has_period === 1 && (
+                    <span className="calendar__indicator calendar__indicator--period"></span>
+                  )}
+                  {log?.physicalSymptoms?.length > 0 && (
+                    <span className="calendar__indicator calendar__indicator--physical"></span>
+                  )}
+                  {log?.mentalConditions?.length > 0 && (
+                    <span className="calendar__indicator calendar__indicator--mental"></span>
+                  )}
+                </div>
               </div>
-          </div>
-      );
-  })}
+            );
+          })}
         </div>
       </div>
       {showForm && (
@@ -197,9 +204,9 @@ function Calendar({ userId }) {
         />
       )}
       {formSuccessMessage && (
-        <div className="form__message">{formSuccessMessage}</div>
+        <p className="form__message">{formSuccessMessage}</p>
       )}
-    </div>
+    </section>
   );
 }
 

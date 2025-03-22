@@ -77,10 +77,6 @@
     &--today {
       font-weight: bold;
     }
-
-    &__message {
-      padding: 16px;
-    }
   }
 
   &__indicators {
@@ -106,4 +102,8 @@
       background-color: blue;
     }
   }
+}
+
+.form__message {
+  margin-top: 1rem;
 }
