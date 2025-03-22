@@ -116,3 +116,36 @@ export const deletePeriodLog = async (userId, date) => {
     throw error;
   }
 };
+
+export const getAllArticles = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/articles`);
+    if (!response.ok) throw new Error("Failed to fetch articles");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching all articles:", error);
+    throw error;
+  }
+};
+
+export const getArticlesByCategory = async (category) => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/articles/category/${category}`);
+    if (!response.ok) throw new Error("Failed to fetch articles by category");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching articles by category:", error);
+    throw error;
+  }
+};
+
+export const getArticleById = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/articles/${id}`);
+    if (!response.ok) throw new Error("Failed to fetch article by ID");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching article by ID:", error);
+    throw error;
+  }
+};
