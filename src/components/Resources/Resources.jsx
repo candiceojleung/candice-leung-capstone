@@ -1,84 +1,85 @@
-import { getAllArticles,   getArticlesByCategory } from "../../utils/apiUtils";
+import { getAllArticles, getArticlesByCategory } from "../../utils/apiUtils";
 import { useState, useEffect } from "react";
 import "./Resources.scss";
 
 function Resources() {
   const [articles, setArticles] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
-
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        let data;
-        if (category) {
-          data = await getArticlesByCategory(category);
-        } else {
-          data = await getAllArticles();
-        }
+        const data = await getAllArticles();
         setArticles(data);
+
+        // Extract unique categories from the articles
+        const uniqueCategories = [
+          "All Categories",
+          ...new Set(data.map((article) => article.category)),
+        ];
+        setCategories(uniqueCategories);
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
     };
 
     fetchArticles();
+  }, []);
+
+  useEffect(() => {
+    const filterArticles = async () => {
+      if (category && category !== "All Categories") {
+        const filteredData = await getArticlesByCategory(category);
+        setArticles(filteredData);
+      } else {
+        const allData = await getAllArticles();
+        setArticles(allData);
+      }
+    };
+
+    filterArticles();
   }, [category]);
 
   const handleCategoryClick = (newCategory) => {
-    setCategory(newCategory);
+    setCategory(newCategory === "All Categories" ? "" : newCategory);
   };
 
-  const categories = [
-    "All Categories",
-    "Menstrual Health",
-    "Fertility & Family Planning",
-    "Pregnancy & Postpartum",
-    "Nutrition & Wellness",
-    "Mental Health & Stress",
-    "Inclusive Health Care",
-    "Hormones & Endocrine Health",
-    "Chronic Health Conditions",
-    "Health Checklists & Advice",
-    "Innovation & Technology",
-    "Social & Cultural Aspects",
-  ];
-
   return (
-    <div className="container">
-      <h1>Health Resources</h1>
-      <div className="category-buttons">
-        {categories.map((cat) => (
+    <section className="resources">
+      <h1 className="resources__heading">Read More, Learn More</h1>
+      <div className="resources__buttons">
+        {categories.map((topic) => (
           <button
-            key={cat}
-            className={`category-button ${
-              category === cat ? "active" : ""
-            }`}
-            onClick={() => handleCategoryClick(cat === "All Categories" ? "" : cat)}
+            key={topic}
+            className={`resources__button ${category === topic ? " resources__button --active" : ""}`}
+            onClick={() => handleCategoryClick(topic)}
           >
-            {cat}
+            {topic}
           </button>
         ))}
       </div>
-      <div className="articles-grid">
+      <div className="resources__articles">
         {articles.map((article) => (
-          <div key={article.title} className="article-card">
-            <h2>{article.title}</h2>
-            <p className="article-category">{article.category}</p>
-            <p>{article.content.substring(0, 100)}...</p>
+          <div key={article.title} className="resources__article">
+            <h2 className="resources__title">{article.title}</h2>
+            <p className="resources__category">{article.category}</p>
+            <p className="resources__content">{article.content}</p>
+            <div className="resources__action">
             <a
               href={article.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="read-more-button"
+              className="resources__read"
             >
               Read More
             </a>
           </div>
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
-};
+}
 
 export default Resources;

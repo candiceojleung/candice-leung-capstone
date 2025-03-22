@@ -1,64 +1,82 @@
+.resources {
+  padding: 16px;
 
-.container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
+  &__heading{
+    font-size: 20px; 
+    margin-bottom: 20px; 
   }
-  
-  .articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 8px;
+    margin-bottom: 20px;
   }
-  
-  .article-card {
+
+  &__button {
+    padding: 8px 16px;
+    font-size: 12px; 
+    border: 1px solid #ddd;
+    background-color: white;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    &--active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    &__hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  &__articles{
+    display:flex;
+    flex-direction:column;
+    gap:10px; 
+  }
+
+  &__article {
+    display:flex; 
+    flex-direction:column; 
+    gap: 4px; 
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .article-category {
+  &__content{
+    font-size: 12px; 
+  }
+
+  &__category {
     font-size: 12px;
     color: #777;
     margin-bottom: 5px;
   }
-  
-  .read-more-button {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
-  .read-more-button:hover {
-    background-color: #0056b3;
+
+
+  &__title{
+    font-size: 16px; 
   }
 
-  .category-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+
+  &__action{
+    display:flex; 
+    justify-content:flex-end; 
   }
-  
-  .category-button {
-    padding: 8px 16px;
-    border: 1px solid #ddd;
-    background-color: white;
-    color: #333;
-    border-radius: 5px;
-    cursor: pointer;
+
+  &__read {
+    color:black; 
+    text-decoration: none;
+    font-size:10px; 
+
+    &:hover {
+      background-color: #0056b3;
+    }
   }
-  
-  .category-button.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-  }
-  
-  .category-button:hover {
-    background-color: #f0f0f0;
-  }
+
+}
