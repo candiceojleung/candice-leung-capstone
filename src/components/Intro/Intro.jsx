@@ -7,6 +7,7 @@ function Intro() {
       <div className="intro__pagraph">
         <p className="intro__text"> Start your journey today to a healthier you. Select a date and log your menstrual cycle, track symptoms, and unlock patterns, that will help you manage all the elements of your  reproductive health. </p>
       </div>
+      <p className="intro__subheader">Calendar Indicators</p>
       <div className="intro__legend">
         <ul className="intro__list">
           <li className="intro__indicator intro__indicator--period">
