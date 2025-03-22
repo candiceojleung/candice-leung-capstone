@@ -17,7 +17,7 @@ function AboutUs (){
             <h3 className="about__subheader">Join Us</h3>
             <p className="about__description">Whether you're managing a specific health condition, trying to understand your body better, or simply looking for a comprehensive health tracking tool, periodic.ally is here to support you. Join us in revolutionizing reproductive health management and taking control of your well-being.</p>
 
-            <p className="about__tagline">Together, we can track the elemental insights to a healthier you .</p>
+            <p className="about__tagline">Together, we can track the elements to a healthier you .</p>
         </section>
     );
 };
