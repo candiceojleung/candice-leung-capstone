@@ -30,37 +30,42 @@ function Footer() {
   const footerLinks = [
     { label: "About Us", path: "/about" },
     { label: "FAQs", path: "/faqs" },
-    {label:" Additional Resources", path:"/resources"}
+    { label: " Additional Resources", path: "/resources" },
   ];
   return (
     <section className="footer">
       <div className="footer__desktop-container">
         <div className="footer__tablet-container">
-          <Link to="/"> <p className="footer__logo">periodic.ally</p></Link>
+          <Link to="/">
+            {" "}
+            <p className="footer__logo">periodic.ally</p>
+          </Link>
         </div>
       </div>
-<div className="footer__info">
-      <div className="footer__links">
-        <h3 className="footer__title">Quick Links</h3>
-        <ul className="footer__list">
-          {footerLinks.map((link, index) => (
-            <li key={index} className="footer__items">
-              <Link to={link.path} className="footer__item">{link.label}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="footer__info">
+        <div className="footer__links">
+          <h3 className="footer__title">Quick Links</h3>
+          <ul className="footer__list">
+            {footerLinks.map((link, index) => (
+              <li key={index} className="footer__items">
+                <Link to={link.path} className="footer__item">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="footer__contact">
-        <h3 className="footer__title">Contact Us</h3>
-        <ul className="footer__list">
-          {contactInfo.map((info, index) => (
-            <li key={index} className="footer__items">
-              <p className="footer__item">{info.label}:</p> {info.value}
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="footer__contact">
+          <h3 className="footer__title">Contact Us</h3>
+          <ul className="footer__list">
+            {contactInfo.map((info, index) => (
+              <li key={index} className="footer__items">
+                <p className="footer__item">{info.label}:</p> {info.value}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="footer__social">
         {socialInfo.map((info, index) => (

@@ -1,10 +1,14 @@
 import Calendar from "../../components/Calendar/Calendar";
+import Intro from "../../components/Intro/Intro";
 
 function HomePage() {
   return (
-    <div className="container">
-      <Calendar userId={1}/>
-    </div>
+    <section className="homepage__container">
+      <div className="homepage__wrapper">
+        <Intro />
+      </div>
+      <Calendar userId={1} />
+    </section>
   );
 }
 

@@ -1,0 +1,44 @@
+.intro {
+    padding: 16px; 
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("../src/assets/images/abstract.png");
+  height: 60vw;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &__legend {
+    margin: 0 16px;
+  }
+
+  &__indicator {
+    font-size: 10px;
+
+    &--period {
+      &::marker {
+        color: red;
+        font-size: 14px;
+      }
+    }
+    &--physical {
+      &::marker {
+        color: green;
+        font-size: 14px;
+      }
+    }
+    &--mental {
+      &::marker {
+        color: blue;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__text{
+    font-size: 10px; 
+    padding:16px 0; 
+  }
+}

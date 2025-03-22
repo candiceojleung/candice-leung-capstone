@@ -3,7 +3,7 @@
 
 .header {
   &__container {
-    padding: 24px 16px;
+    padding: 24px 16px 16px;
 
     @include tablet{
       display:flex; 
