@@ -7,6 +7,8 @@ import {
   deletePeriodLog,
 } from "../../utils/apiUtils";
 
+import { formatDateToISO } from "../../utils/dateUtils";
+
 function PeriodLogForm({
   onSubmit,
   onClose,
@@ -71,7 +73,7 @@ function PeriodLogForm({
 
     try {
       let response;
-      const formattedDate = selectedDate.toISOString().split("T")[0];
+      const formattedDate = formatDateToISO(selectedDate);
 
       if (existingLog) {
         response = await updatePeriodLog(userId, formattedDate, logData);
@@ -97,9 +99,9 @@ function PeriodLogForm({
     setError(null);
 
     try {
-      const formattedDate = selectedDate.toISOString().split("T")[0];
+      const formattedDate = formatDateToISO(selectedDate);
       await deletePeriodLog(userId, formattedDate);
-      onDelete(formattedDate); // Call the new onDelete prop
+      onDelete(formattedDate);
     } catch (error) {
       console.error("Error deleting period log:", error);
       setError("Failed to delete log. Please try again.");
@@ -109,20 +111,14 @@ function PeriodLogForm({
   };
 
   const toggleSymptom = (symptomName, isPhysical) => {
-    if (isPhysical) {
-      setPhysicalSymptoms((prev) =>
-        prev.includes(symptomName)
-          ? prev.filter((s) => s !== symptomName)
-          : [...prev, symptomName]
-      );
-    } else {
-      setMentalConditions((prev) =>
-        prev.includes(symptomName)
-          ? prev.filter((c) => c !== symptomName)
-          : [...prev, symptomName]
-      );
-    }
+    const setSymptoms = isPhysical ? setPhysicalSymptoms : setMentalConditions;
+    setSymptoms(prev => 
+      prev.includes(symptomName)
+        ? prev.filter(s => s !== symptomName)
+        : [...prev, symptomName]
+    );
   };
+
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
