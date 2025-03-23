@@ -1,11 +1,33 @@
 import "./Intro.scss";
+import { useState, useEffect } from "react";
+import { getUser } from "../../utils/apiUtils";
 
-function Intro() {
+function Intro({ userId }) {
+  const [userName, setUserName] = useState("User");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+        try {
+          const userData = await getUser(userId);
+          const firstName = userData.name.split(" ")[0]; 
+          setUserName(firstName); 
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+    fetchUserData();
+  }, [userId]);
+
   return (
     <section className="intro">
-      <h2 className="intro__title">Hi Jane</h2>
+      <h2 className="intro__title">Hello {userName}</h2>
       <div className="intro__pagraph">
-        <p className="intro__text"> Start your journey today to a healthier you. Select a date and log your menstrual cycle, track symptoms, and unlock patterns, that will help you manage all the elements of your  reproductive health. </p>
+        <p className="intro__text">
+          {" "}
+          Start your journey today to a healthier you. Select a date and log
+          your menstrual cycle, track symptoms, and unlock patterns that will
+          help you manage all the elements of your reproductive health.{" "}
+        </p>
       </div>
       <p className="intro__subheader">Calendar Indicators</p>
       <div className="intro__legend">
