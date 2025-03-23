@@ -1,6 +1,6 @@
-@use "../../styles/partials/mixins" as*; 
-@use "../../styles/partials/variables" as *; 
-@use "../../styles/partials/typography" as *; 
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
 
 .intro {
   padding: 16px;
@@ -13,47 +13,47 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  display:flex; 
-  flex-direction:column; 
-  justify-content:center; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  @include tablet{
-    min-height: 30vw; 
+  @include tablet {
+    min-height: 30vw;
   }
 
-  &__greeting{
-    display:flex;
-    align-items:flex-end; 
-    gap: 8px; 
+  &__greeting {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
   }
 
-  &__title{
-    font-family:"PlayfairDisplay";
-    font-weight:500; 
-    font-size:28px; 
+  &__title {
+    font-family: "PlayfairDisplay";
+    font-weight: 500;
+    font-size: 24px;
   }
 
-  &__name{
-    font-family:"PlayfairDisplay";
-    font-style:italic;
-    font-weight:500; 
-    font-size:28px;
+  &__name {
+    font-family: "PlayfairDisplay";
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
   }
 
   &__legend {
     margin: 0 16px;
   }
 
-  &__subheader{
-    font-family:"Inter";
+  &__subheader {
+    font-family: "PlayfairDisplay";
     font-weight: 500;
-    font-size:16px; 
+    font-size: 14px;
     padding-bottom: 5px;
   }
 
   &__indicator {
-    font-family:"Inter";
-    font-size:14px; 
+    font-family: "Inter";
+    font-size: 12px;
 
     &--period {
       &::marker {
@@ -69,15 +69,15 @@
     }
     &--mental {
       &::marker {
-        color:$mental-health-color;
+        color: $mental-health-color;
         font-size: 18px;
       }
     }
   }
 
   &__text {
-    font-family:"Inter";
-    font-size: 14px;
+    font-family: "Inter";
+    font-size: 12px;
     padding: 16px 0;
   }
 }

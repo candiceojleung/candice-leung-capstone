@@ -34,9 +34,10 @@
     font-size: 30px;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    opacity:60%;
 
     &:hover {
-      opacity: 0.6;
+      opacity: 100%;
     }
   }
 
