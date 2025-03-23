@@ -1,33 +1,64 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
 .faqs {
-  max-width: 800px;
-  margin: 0 auto;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("../src/assets/images/faq.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 20px;
 
   &__title {
+    font-family: "PlayfairDisplay";
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-size: 24px;
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    padding:0 16px; 
+    margin: 0 auto;
+    @include tablet{
+      padding:0 24px;
+    }
   }
 
   &__item {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__question-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__icon {
+    font-size: 16px;
+    margin-right: 10px;
   }
 
   &__question {
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 16px;
   }
 
   &__answer {
+    font-family: "Inter";
+    font-weight: 300;
     font-size: 16px;
-    color: #666;
+    margin-top: 10px;
+    margin-left: 32px;
   }
 }

@@ -1,6 +1,9 @@
 import "./FAQs.scss";
+import { useState } from "react";
 
 const FAQs = () => {
+  const [expandedSection, setExpandedSection] = useState({});
+
   const faqs = [
     {
       question: "What is periodic.ally?",
@@ -38,20 +41,42 @@ const FAQs = () => {
         "Yes, absolutely! The purpose of this app is to show your healthcare practioner the frequency of your symptoms and whether they make sense for where you are in your menstrual cycle. ",
     },
     {
-      question: "How do I contact support?",
+      question: "How do I contact your support team?",
       answer:
-        "You can contact us via email at support@periodic.ally.com or through the other contact methods listed at the bottom of our page.",
+        "You can contact us via email at support@periodic.ally.com or through the other channels listed at the bottom of our page.",
     },
   ];
-
+  const toggleSection = (question) => {
+    setExpandedSection((prevSections) => ({
+      ...prevSections,
+      [question]: !prevSections[question],
+    }));
+  };
   return (
     <section className="faqs">
       <h2 className="faqs__title">Frequently Asked Questions</h2>
       <div className="faqs__list">
-        {faqs.map((faq, index) => (
-          <div key={index} className="faqs__item">
-            <h3 className="faqs__question">{faq.question}</h3>
-            <p className="faqs__answer">{faq.answer}</p>
+        {faqs.map((faq) => (
+          <div
+            key={faq.question}
+            className={`faqs__item ${
+              expandedSection[faq.question] ? "faqs__item--expanded" : ""
+            }`}
+          >
+            <div
+              className="faqs__question-container"
+              onClick={() => toggleSection(faq.question)}
+            >
+              <i
+                className={`bx ${
+                  expandedSection[faq.question] ? "bx-minus" : "bx-plus"
+                } faqs__icon`}
+              ></i>
+              <h3 className="faqs__question">{faq.question}</h3>
+            </div>
+            {expandedSection[faq.question] && (
+              <p className="faqs__answer">{faq.answer}</p>
+            )}
           </div>
         ))}
       </div>
