@@ -67,10 +67,11 @@ export const getAllPeriodLogs = async (userId) => {
   }
 };
 
-
 export const getPeriodLogByDate = async (userId, date) => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/log/user/${userId}/date/${date}`);
+    const response = await axios.get(
+      `${BASE_URL}/api/log/user/${userId}/date/${date}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching period log by date:", error);
@@ -130,7 +131,9 @@ export const getAllArticles = async () => {
 
 export const getArticlesByCategory = async (category) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/articles/category/${category}`);
+    const response = await fetch(
+      `${BASE_URL}/api/articles/category/${category}`
+    );
     if (!response.ok) throw new Error("Failed to fetch articles by category");
     return await response.json();
   } catch (error) {

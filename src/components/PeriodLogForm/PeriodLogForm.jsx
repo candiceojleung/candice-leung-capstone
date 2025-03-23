@@ -112,13 +112,12 @@ function PeriodLogForm({
 
   const toggleSymptom = (symptomName, isPhysical) => {
     const setSymptoms = isPhysical ? setPhysicalSymptoms : setMentalConditions;
-    setSymptoms(prev => 
+    setSymptoms((prev) =>
       prev.includes(symptomName)
-        ? prev.filter(s => s !== symptomName)
+        ? prev.filter((s) => s !== symptomName)
         : [...prev, symptomName]
     );
   };
-
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;

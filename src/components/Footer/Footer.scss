@@ -1,18 +1,17 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
-@use "../../styles/partials/typography" as*; 
+@use "../../styles/partials/typography" as *;
 
 .footer {
   padding: 0 1rem 1.5rem;
-  background-color: $primary-background-color; 
-
+  background-color: $primary-background-color;
 
   @include tablet {
-    padding: 36px 36px 24px;
+    padding: 2.25rem 2.25rem 1.5rem;
   }
 
   @include desktop {
-    padding: 48px 49px 24px;
+    padding: 3rem 3rem 1.5rem;
   }
 
   &__logo {
@@ -24,35 +23,35 @@
   }
 
   &__title {
-    font-family:"PlayfairDisplay";
-    font-size: 16px;
+    font-family: "PlayfairDisplay";
+    font-size: 1rem;
     margin-bottom: 0.5rem;
 
-    @include tablet{
-      font-size:18px; 
-      margin-bottom: 16px;
+    @include tablet {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
     }
 
-    @include desktop{
-      margin-bottom: 24px;
-      font-size: 22px;
+    @include desktop {
+      margin-bottom: 1.5rem;
+      font-size: 1.375rem;
     }
   }
 
   &__social {
     padding: 1rem 0;
-    @include tablet{
-      padding: 24px 0 36px; 
+    @include tablet {
+      padding: 1.5rem 0 2.25rem;
     }
 
     @include desktop {
-      padding-top: 24px;
+      padding-top: 1.5rem;
     }
   }
 
   &__copyright {
     @include desktop {
-      padding-top: 24px;
+      padding-top: 1.5rem;
     }
   }
 
@@ -75,20 +74,20 @@
   }
 
   &__info {
-    font-family:"PlayfairDisplay";
-    font-weight:700;
-    font-size: 10px;
+    font-family: "PlayfairDisplay";
+    font-weight: 700;
+    font-size: 0.625rem;
     @include tablet {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       width: 80%;
-      font-size:12px;
+      font-size: 0.75rem;
     }
   }
 
   &__links {
-    padding: 16px 0;
+    padding: 1rem 0;
     @include tablet {
       padding: 0;
     }
@@ -100,35 +99,35 @@
   }
 
   &__items {
-    font-family:"Inter";
+    font-family: "Inter";
     font-weight: 400;
     margin-bottom: 0.25rem;
-    font-size: 12px;
+    font-size: 0.75rem;
     display: flex;
-    gap: 4px;
-    
-    @include tablet{
-      font-size:13px;
-      font-weight: 300; 
-      margin-bottom: 8px;
+    gap: 0.25rem;
+
+    @include tablet {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
     }
 
-    @include desktop{
-      font-size:15px;
+    @include desktop {
+      font-size: 0.9375rem;
     }
   }
 
   &__item {
-    font-family:"Inter"; 
-    font-weight:500;
-    font-size: 12px; 
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 0.75rem;
 
-    @include tablet{
-      font-size: 13px;
+    @include tablet {
+      font-size: 0.8125rem;
     }
-    
-    @include desktop{
-      font-size:15px;
+
+    @include desktop {
+      font-size: 0.9375rem;
     }
   }
 }

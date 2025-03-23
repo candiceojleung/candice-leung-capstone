@@ -7,28 +7,28 @@ function Intro({ userId }) {
 
   useEffect(() => {
     const fetchUserData = async () => {
-        try {
-          const userData = await getUser(userId);
-          const firstName = userData.name.split(" ")[0]; 
-          setUserName(firstName); 
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      };
+      try {
+        const userData = await getUser(userId);
+        const firstName = userData.name.split(" ")[0];
+        setUserName(firstName);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
     fetchUserData();
   }, [userId]);
 
   return (
     <section className="intro">
       <div className="intro__greeting">
-      <h2 className="intro__title">Hello </h2>
-      <h2 className="intro__name">{userName},</h2>
+        <h2 className="intro__title">Hello </h2>
+        <h2 className="intro__name">{userName},</h2>
       </div>
       <div className="intro__pagraph">
         <p className="intro__text">
           {" "}
-          Start your journey today to a healthier you. Select a date, log
-          your menstrual cycle, track your symptoms, and unlock patterns that will
+          Start your journey today to a healthier you. Select a date, log your
+          menstrual cycle, track your symptoms, and unlock patterns that will
           help you manage all the elements of your reproductive health.{" "}
         </p>
       </div>

@@ -3,30 +3,30 @@
 @use "../../styles/partials/typography" as *;
 
 .header {
-  padding: 24px 16px 16px;
+  padding: 1.5rem 1rem 1rem;
   background-color: $primary-background-color;
   @include tablet {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 36px 0 36px 36px;
+    padding: 2.25rem 0 2.25rem 2.25rem;
   }
 
   @include desktop {
-    padding: 48px 0 48px 48px; 
+    padding: 3rem 0 3rem 3rem;
   }
 
   &__heading {
     font-family: "Comfortaa";
-    font-size: 24px;
-    padding-bottom: 24px;
+    font-size: 1.5rem;
+    padding-bottom: 1.5rem;
     text-align: center;
 
     @include tablet {
-      padding-bottom: 24px;
+      padding-bottom: 1.5rem;
     }
-    @include desktop{
-      font-size: 28px; 
+    @include desktop {
+      font-size: 1.75rem;
     }
   }
 
@@ -38,7 +38,7 @@
   &__link {
     display: flex;
     text-decoration: none;
-    gap: 8px;
+    gap: 0.5rem;
 
     &--active {
       @include tablet {
@@ -48,7 +48,7 @@
   }
 
   &__icon {
-    width: 26px;
+    width: 1.625rem;
     transition: transform 0.3s ease-in-out;
     &:hover {
       transform: scale(1.5);
@@ -67,20 +67,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 16px;
-      padding: 14px;
+      font-size: 1rem;
+      padding: 0.875rem;
       border-top: 1px solid black;
     }
 
-    @include desktop{
-      font-size: 20px; 
+    @include desktop {
+      font-size: 1.25rem;
     }
     &--empty {
       @include tablet {
-        padding-right: 48px;
+        padding-right: 3rem;
       }
-      @include desktop{
-        padding-right: 80px;
+      @include desktop {
+        padding-right: 5rem;
       }
     }
 

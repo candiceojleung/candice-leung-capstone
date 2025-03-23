@@ -3,7 +3,6 @@
 @use "../../styles/partials/typography" as *;
 
 .about {
- 
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -20,52 +19,52 @@
   }
 
   &__content {
-    min-height:50vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    padding: 40px 0;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2.5rem 0;
     text-align: center;
     transition: opacity 0.3s ease-in-out;
   }
 
   &__nav-icon {
-    font-size: 30px;
+    font-size: 1.875rem;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    opacity:60%;
+    opacity: 60%;
 
     &:hover {
       opacity: 100%;
     }
 
-    @include desktop{
-      font-size: 42px;
+    @include desktop {
+      font-size: 2.625rem;
     }
   }
 
   &__title {
     font-family: "PlayfairDisplay";
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
 
-    @include desktop{
-      font-size: 28px;
+    @include desktop {
+      font-size: 1.75rem;
     }
   }
 
   &__description {
     font-family: "Inter";
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.6;
 
     @include tablet {
-      font-size: 18px;
-      padding: 0 64px;
+      font-size: 1.125rem;
+      padding: 0 4rem;
     }
-    @include desktop{
-      font-size: 22px;
-      padding: 0 140px;
+    @include desktop {
+      font-size: 1.375rem;
+      padding: 0 8.75rem;
     }
   }
 }

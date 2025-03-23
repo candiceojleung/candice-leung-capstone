@@ -3,8 +3,8 @@
 @use "../../styles/partials/typography" as *;
 
 .form {
-  padding: 24px 16px;
-  border: 1px solid $primary-border-color;
+  padding: 1.5rem 1rem;
+  border: 0.0625rem solid $primary-border-color;
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
@@ -15,27 +15,27 @@
   background-repeat: no-repeat;
 
   @include tablet {
-    padding: 24px;
-    margin: 36px 36px 36px 0;
+    padding: 1.5rem;
+    margin: 2.25rem 2.25rem 2.25rem 0;
     width: 55%;
-    border-radius: 20px;
+    border-radius: 1.25rem;
   }
-  @include desktop{
-    margin: 48px 36px 36px 0; 
+  @include desktop {
+    margin: 3rem 2.25rem 2.25rem 0;
   }
 
   &__title {
     font-family: "Inter";
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
 
     @include tablet {
       margin: 0;
-      font-size: 22px; 
+      font-size: 1.375rem;
     }
 
-    @include desktop{
-      font-size: 24px; 
+    @include desktop {
+      font-size: 1.5rem;
     }
   }
 
@@ -46,12 +46,12 @@
 
   &__question {
     font-family: "Inter";
-    font-size: 16px;
-    margin: 16px 0 8px;
+    font-size: 1rem;
+    margin: 1rem 0 0.5rem;
 
-    @include desktop{
-      font-size:20px; 
-      margin: 16px 0 16px;
+    @include desktop {
+      font-size: 1.25rem;
+      margin: 1rem 0 1rem;
     }
   }
 
@@ -62,26 +62,26 @@
   }
   &__actions {
     font-family: "Comfortaa";
-    margin-top: 16px;
-    font-size: 12px;
+    margin-top: 1rem;
+    font-size: 0.75rem;
     font-weight: 500;
     padding: 0.5rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    gap: 8px;
+    gap: 0.5rem;
 
-    &:hover{
+    &:hover {
       background-color: $selected-color;
     }
 
-    @include tablet{
-      font-size: 14px; 
+    @include tablet {
+      font-size: 0.875rem;
     }
 
-    @include desktop{
-      font-size: 15px;
+    @include desktop {
+      font-size: 0.9375rem;
     }
   }
 }

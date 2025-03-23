@@ -35,8 +35,7 @@ function Footer() {
   return (
     <section className="footer">
       <div className="footer__desktop-container">
-        <div className="footer__tablet-container">
-        </div>
+        <div className="footer__tablet-container"></div>
       </div>
       <div className="footer__info">
         <div className="footer__links">

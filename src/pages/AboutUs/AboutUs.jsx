@@ -37,14 +37,21 @@ function AboutUs() {
   return (
     <section className="about">
       <div className="about__panel">
-        <i className="bx bx-chevron-left about__nav-icon" onClick={prevSection}></i>
+        <i
+          className="bx bx-chevron-left about__nav-icon"
+          onClick={prevSection}
+        ></i>
         <div className="about__content">
           <h2 className="about__title">{sections[currentSection].title}</h2>
-          <p className="about__description">{sections[currentSection].content}</p>
+          <p className="about__description">
+            {sections[currentSection].content}
+          </p>
         </div>
-        <i className="bx bx-chevron-right about__nav-icon" onClick={nextSection}></i>
+        <i
+          className="bx bx-chevron-right about__nav-icon"
+          onClick={nextSection}
+        ></i>
       </div>
-
     </section>
   );
 }

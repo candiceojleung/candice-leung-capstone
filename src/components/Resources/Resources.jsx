@@ -70,7 +70,9 @@ function Resources() {
             target="_blank"
             rel="noopener noreferrer"
             className={`resources__article resources__article--${
-              backgroundClasses[Math.floor(Math.random() * backgroundClasses.length)]
+              backgroundClasses[
+                Math.floor(Math.random() * backgroundClasses.length)
+              ]
             }`}
           >
             <div className="resources__action">
