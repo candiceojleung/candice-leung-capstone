@@ -16,7 +16,7 @@
   }
 
   &--selected {
-    background-color: red;
+    background-color:$secondary-selected-color;
     color:$secondary-text;
     &:hover {
       background-color:$hover-color;
