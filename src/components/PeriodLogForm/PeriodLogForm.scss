@@ -1,8 +1,21 @@
+@use "../../styles/partials/mixins" as*;
+@use "../../styles/partials/variables" as *; 
+
 .form {
   padding:16px; 
+
+  @include tablet{
+    padding: 24px 16px;
+    width:50%; 
+  }
+
     &__title {
-      font-size: 1.5rem;
-      margin: 1rem 0 1rem 0;
+      font-size: 20px;
+      margin: 1rem 0;
+
+      @include tablet{
+        margin: 0; 
+      }
     }
 
     &__tracker{

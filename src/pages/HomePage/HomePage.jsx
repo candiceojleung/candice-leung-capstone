@@ -1,13 +1,16 @@
 import Calendar from "../../components/Calendar/Calendar";
 import Intro from "../../components/Intro/Intro";
+import "./Homepage.scss";
 
 function HomePage() {
   return (
     <section className="homepage__container">
       <div className="homepage__wrapper">
-        <Intro />
+        <Intro userId={1} />
       </div>
-      <Calendar userId={1} />
+      <div className="homepage__item">
+      <Calendar userId={1}/>
+      </div>
     </section>
   );
 }
