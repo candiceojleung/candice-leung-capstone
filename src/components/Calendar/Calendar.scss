@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *; 
 
 .bx {
   font-size: 1.5rem;
@@ -13,6 +14,7 @@
   justify-content: center;
   margin-bottom: 24px;
 
+
   @include tablet {
     margin-bottom: 0;
     flex-direction: row;
@@ -21,15 +23,19 @@
   }
 
   &__container {
-    width: 100%;
-    padding: 0 16px;
-    max-width: 400px;
+    width:100%; 
+    max-width:400px; 
+    padding:0 16px;
+
     @include tablet {
-      padding: 50px;
+      margin: 36px;
       width: 50%;
+      border: 1px solid $secondary-border;
+      border-radius: 10px; 
+
     }
   }
-  
+
   &__wrapper {
     display: flex;
     gap: 12px;
@@ -37,6 +43,7 @@
 
   &__month,
   &__year {
+    font-family:"Comfortaa";
     font-size: 20px;
   }
 
@@ -61,8 +68,8 @@
   }
 
   &__dayname {
+    font-family:"Inter";
     text-align: center;
-    font-weight: bold;
     text-transform: uppercase;
     font-size: 0.9rem;
   }
@@ -79,7 +86,8 @@
   }
 
   &__number {
-    background-color: #f6f3e9;
+    font-family:"Inter";
+    background-color:$secondary-border;
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
@@ -89,11 +97,12 @@
     font-size: 1rem;
 
     &--selected {
-      color: red;
+      color: $selected-color;
+      font-weight:500;
     }
 
     &--today {
-      font-weight: bold;
+      font-weight:700;
     }
   }
 
@@ -104,20 +113,25 @@
   }
 
   &__indicator {
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    aspect-ratio: 1;
     border-radius: 50%;
 
+    @include tablet{
+      width:6px; 
+      aspect-ratio: 1;
+    }
+
     &--period {
-      background-color: red;
+      background-color:$cycle-color;
     }
 
     &--physical {
-      background-color: green;
+      background-color: $physical-color;
     }
 
     &--mental {
-      background-color: blue;
+      background-color:$mental-health-color;
     }
   }
 }

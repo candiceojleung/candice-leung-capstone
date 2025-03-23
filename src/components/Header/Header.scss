@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as*; 
 
 .header {
   &__container {
@@ -19,7 +20,8 @@
   }
 
   &__heading{
-    font-size: 22px; 
+    font-family:"Comfortaa";
+    font-size: 24px; 
     padding-bottom: 24px; 
     text-align:center;
 
@@ -40,10 +42,9 @@
 
     &--active{
       @include tablet{
-        font-weight:900; 
+        font-weight:700; 
            }
     }
-
 
   }
 
@@ -59,10 +60,11 @@
     display: none; 
 
     @include tablet {
+      font-family:"Inter";
       display: flex; 
       justify-content:center; 
       align-items:center; 
-      font-size:12px; 
+      font-size:14px; 
       padding: 12px; 
       border-top: 1px solid black; 
 
