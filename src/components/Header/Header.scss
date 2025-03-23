@@ -4,7 +4,7 @@
 
 .header {
   padding: 24px 16px 16px;
-
+  background-color: $primary-background-color;
   @include tablet {
     display: flex;
     align-items: center;

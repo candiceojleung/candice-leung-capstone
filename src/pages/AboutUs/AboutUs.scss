@@ -1,7 +1,57 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
 .about {
-  padding: 16px;
+
+  &__panel {
+    min-height: 60vw;
+    max-height: 60vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 0 ;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("../src/assets/images/about-us.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  }
+
+  &__content {
+    flex: 1;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &__nav-icon {
+    font-size: 30px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__title {
+    font-family:"PlayfairDisplay";
+    margin-bottom: 15px;
+  }
 
   &__description {
-    padding: 16px 0;
+    font-family:"Inter";
+    font-size:12px;
+    line-height: 1.6;
+
+    @include tablet{
+      font-size:16px; 
+      padding:0 64px;
+    }
   }
+
 }
