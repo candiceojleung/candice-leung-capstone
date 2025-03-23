@@ -1,3 +1,6 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 .bx {
   font-size: 1.5rem;
   cursor: pointer;
@@ -5,17 +8,28 @@
 
 .calendar {
   display: flex;
-  flex-direction:column; 
-  align-items:center; 
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
+
+  @include tablet {
+    margin-bottom: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
 
   &__container {
     width: 100%;
-    padding: 0 16px; 
-    max-width: 400px; // Adjust this value as needed
+    padding: 0 16px;
+    max-width: 400px;
+    @include tablet {
+      padding: 50px;
+      width: 50%;
+    }
   }
-
+  
   &__wrapper {
     display: flex;
     gap: 12px;
@@ -50,25 +64,29 @@
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.9rem; // Adjust as needed
+    font-size: 0.9rem;
   }
 
   &__days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     width: 100%;
-    gap: 1px; // Add a small gap between cells
+    gap: 1px;
+
+    @include tablet {
+      padding: 16px 0;
+    }
   }
 
   &__number {
-    background-color: rgba(212, 208, 209, 0.463);
-    aspect-ratio: 1 / 1; // Make each cell a square
+    background-color: #f6f3e9;
+    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    font-size: 1rem; // Adjust font size as needed
+    font-size: 1rem;
 
     &--selected {
       color: red;
@@ -106,4 +124,9 @@
 
 .form__message {
   margin-top: 1rem;
+
+  @include tablet {
+    display: flex;
+    justify-content: flex-start;
+  }
 }
