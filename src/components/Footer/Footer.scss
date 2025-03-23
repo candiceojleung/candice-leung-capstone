@@ -1,8 +1,11 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as*; 
 
 .footer {
   padding: 0 1rem 1.5rem;
+  background-color: $primary-background-color; 
+
 
   @include tablet {
     padding: 3rem 1.5rem;
@@ -21,6 +24,7 @@
   }
 
   &__title {
+    font-family:"PlayfairDisplay";
     font-size: 16px;
     margin-bottom: 0.5rem;
   }
@@ -80,6 +84,8 @@
   }
 
   &__items {
+    font-family:"Inter";
+    font-weight: 400;
     margin-bottom: 0.25rem;
     font-size: 12px;
     display: flex;
@@ -88,6 +94,7 @@
   }
 
   &__item {
-    font-weight: bold;
+    font-family:"Inter"; 
+    font-weight:500;
   }
 }

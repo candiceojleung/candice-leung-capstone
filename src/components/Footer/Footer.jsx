@@ -30,16 +30,16 @@ function Footer() {
   const footerLinks = [
     { label: "About Us", path: "/about" },
     { label: "FAQs", path: "/faqs" },
-    { label: " Additional Resources", path: "/resources" },
+    { label: "Resources", path: "/resources" },
   ];
   return (
     <section className="footer">
       <div className="footer__desktop-container">
         <div className="footer__tablet-container">
-          <Link to="/">
+          {/* <Link to="/">
             {" "}
             <p className="footer__logo">periodic.ally</p>
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="footer__info">

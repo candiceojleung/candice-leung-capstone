@@ -3,7 +3,7 @@ import "./Header.scss";
 
 function Header() {
   return (
-    <header className="header__container">
+    <header className="header">
       <Link to="/"><h1 className="header__heading">periodic.ally</h1></Link>
       <nav className="header__nav">
         <NavLink to="/"  className={({ isActive }) => 

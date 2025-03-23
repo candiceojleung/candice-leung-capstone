@@ -1,83 +1,78 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
-@use "../../styles/partials/typography" as*; 
+@use "../../styles/partials/typography" as *;
 
 .header {
-  &__container {
-    padding: 24px 16px 16px;
+  padding: 24px 16px 16px;
 
-    @include tablet{
-      display:flex; 
-      align-items:center;
-      justify-content:space-between;
-      padding: 24px 0 24px 16px; 
+  @include tablet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0 24px 16px;
+  }
 
-    }
+  @include desktop {
+    padding: 0 8.125rem;
+  }
 
-    @include desktop {
-      padding: 0 8.125rem;
+  &__heading {
+    font-family: "Comfortaa";
+    font-size: 24px;
+    padding-bottom: 24px;
+    text-align: center;
+
+    @include tablet {
+      padding-bottom: 24px;
     }
   }
 
-  &__heading{
-    font-family:"Comfortaa";
-    font-size: 24px; 
-    padding-bottom: 24px; 
-    text-align:center;
-
-    @include tablet{
-      padding-bottom: 24px; 
-    }
-  }
-
-  &__nav{
-    display:flex; 
-    justify-content:space-around; 
+  &__nav {
+    display: flex;
+    justify-content: space-around;
   }
 
   &__link {
     display: flex;
     text-decoration: none;
-    gap: 8px; 
+    gap: 8px;
 
-    &--active{
-      @include tablet{
-        font-weight:700; 
-           }
+    &--active {
+      @include tablet {
+        font-weight: 700;
+      }
     }
-
   }
 
   &__icon {
     width: 26px;
 
-    @include tablet{
-      display:none; 
+    @include tablet {
+      display: none;
     }
   }
 
   &__text {
-    display: none; 
+    display: none;
 
     @include tablet {
-      font-family:"Inter";
-      display: flex; 
-      justify-content:center; 
-      align-items:center; 
-      font-size:14px; 
-      padding: 12px; 
-      border-top: 1px solid black; 
-
+      font-family: "Inter";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      padding: 12px;
+      border-top: 1px solid black;
     }
-    &--empty{
-      @include tablet{
-        padding-right: 36px; 
+    &--empty {
+      @include tablet {
+        padding-right: 36px;
       }
     }
 
-    &--adjust{
-      @include tablet{
-        padding-left:0; 
+    &--adjust {
+      @include tablet {
+        padding-left: 0;
       }
     }
   }
