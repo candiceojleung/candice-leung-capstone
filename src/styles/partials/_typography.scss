@@ -1,7 +1,15 @@
 @font-face {
-  font-family: "Carattere";
-  src: url("../../assets/fonts/Carattere-Regular.woff") format("woff");
+  font-family: "PlayfairDisplay";
+  src: url("../../assets/fonts/PlayfairDisplay-Regular.woff") format("woff"),
+  url("../../assets/fonts/PlayfairDisplay-Regular.woff2") format("woff2");
   font-weight: 400;
+}
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("../../assets/fonts/PlayfairDisplay-Medium.woff") format("woff"),
+  url("../../assets/fonts/PlayfairDisplay-Medium.woff2") format("woff2");
+  font-weight: 500;
 }
 
 @font-face {
