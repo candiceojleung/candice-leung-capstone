@@ -7,7 +7,7 @@
   margin: 2px;
   padding: 6px 14px;
   border-radius: 20px;
-  border: 1px solid $primary-border;
+  border: 1px solid $primary-border-color;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 10px;
@@ -16,7 +16,7 @@
   }
 
   &--selected {
-    background-color:$secondary-selected-color;
+    background-color:$selected-color;
     color:$secondary-text;
     &:hover {
       background-color:$hover-color;

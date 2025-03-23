@@ -27,7 +27,7 @@
     @include tablet {
       margin: 36px;
       width: 50%;
-      border: 1px solid $primary-border;
+      border: 1px solid $primary-border-color;
       border-radius: 10px;
     }
   }
@@ -84,7 +84,7 @@
 
   &__number {
     font-family: "Inter";
-    background-color: $primary-border;
+    background-color: $primary-border-color;
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;

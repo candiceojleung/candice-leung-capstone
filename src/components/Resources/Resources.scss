@@ -2,87 +2,113 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/typography" as *;
 
-
 .resources {
   padding: 16px;
 
-  &__heading{
-    font-family:"PlayfairDisplay";
-    font-size: 24px; 
-    margin-bottom: 20px; 
+  &__heading {
+    font-family: "PlayfairDisplay";
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   &__buttons {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 8px;
     margin-bottom: 20px;
   }
 
   &__button {
-    padding: 8px 16px;
-    font-size: 12px; 
-    border: 1px solid #ddd;
-    background-color: white;
-    color: #333;
-    border-radius: 5px;
+    flex: 1 0;
+    font-family: "Inter";
+    padding: 6px 12px;
+    font-size: 12px;
+    border: 1px solid $secondary-text;
+    border-radius: 20px;
     cursor: pointer;
     &--active {
-      background-color: #007bff;
-      color: white;
-      border-color: #007bff;
+      background-color: $selected-color;
+      color: $secondary-text;
     }
-
-    &__hover {
-      background-color: #f0f0f0;
+    &:hover {
+      background-color: $hover-color;
+    }
+    @include tablet{
+      flex:none;
     }
   }
 
-  &__articles{
-    display:flex;
-    flex-direction:column;
-    gap:10px; 
+  &__articles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
   }
 
   &__article {
-    display:flex; 
-    flex-direction:column; 
-    gap: 4px; 
-    border: 1px solid #ddd;
+    font-family: "Inter";
+    font-weight: 400;
+
+    gap: 4px;
+    border: 1px solid $secondary-border-color;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  &__content{
-    font-size: 12px; 
-  }
 
-  &__category {
-    font-size: 12px;
-    color: #777;
-    margin-bottom: 5px;
-  }
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
+    @include tablet {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 200px;
+    }
+    &--bg1 {
+      background-image: url("../../assets/images/article-1.png");
+    }
 
-  &__title{
-    font-size: 16px; 
-  }
+    &--bg2 {
+      background-image: url("../../assets/images/article-2.png");
+    }
 
-
-  &__action{
-    display:flex; 
-    justify-content:flex-end; 
-  }
-
-  &__read {
-    color:black; 
-    text-decoration: none;
-    font-size:10px; 
-
-    &:hover {
-      background-color: #0056b3;
+    &--bg3 {
+      background-image: url("../../assets/images/article-3.png");
     }
   }
 
+  &__category {
+    font-size: 10px;
+    color: $subheader-color;
+    margin-bottom: 5px;
+  }
+
+  &__title {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__arrow {
+    text-decoration: none;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: translateX(4px);
+    }
+  }
 }
