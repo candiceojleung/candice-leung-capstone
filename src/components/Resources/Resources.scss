@@ -1,8 +1,14 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+
 .resources {
   padding: 16px;
 
   &__heading{
-    font-size: 20px; 
+    font-family:"PlayfairDisplay";
+    font-size: 24px; 
     margin-bottom: 20px; 
   }
 

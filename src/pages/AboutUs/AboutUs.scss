@@ -3,27 +3,29 @@
 @use "../../styles/partials/typography" as *;
 
 .about {
-
-  &__panel {
-    min-height: 60vw;
-    max-height: 60vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 0 ;
-    background: linear-gradient(
+ 
+  background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("../src/assets/images/about-us.png");
+    url("../src/assets/images/form-pic.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 
+  &__panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__content {
-    flex: 1;
+    min-height: 50vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding: 40px 0;
     text-align: center;
     transition: opacity 0.3s ease-in-out;
   }
@@ -39,19 +41,18 @@
   }
 
   &__title {
-    font-family:"PlayfairDisplay";
+    font-family: "PlayfairDisplay";
     margin-bottom: 15px;
   }
 
   &__description {
-    font-family:"Inter";
-    font-size:12px;
+    font-family: "Inter";
+    font-size: 12px;
     line-height: 1.6;
 
-    @include tablet{
-      font-size:16px; 
-      padding:0 64px;
+    @include tablet {
+      font-size: 16px;
+      padding: 0 64px;
     }
   }
-
 }

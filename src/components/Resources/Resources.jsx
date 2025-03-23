@@ -13,7 +13,6 @@ function Resources() {
         const data = await getAllArticles();
         setArticles(data);
 
-        // Extract unique categories from the articles
         const uniqueCategories = [
           "All Categories",
           ...new Set(data.map((article) => article.category)),
@@ -47,7 +46,7 @@ function Resources() {
 
   return (
     <section className="resources">
-      <h1 className="resources__heading">Read More, Learn More</h1>
+      <h1 className="resources__heading">Learn More</h1>
       <div className="resources__buttons">
         {categories.map((topic) => (
           <button
