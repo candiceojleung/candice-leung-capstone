@@ -26,8 +26,6 @@ The web application can be used by folks who wish to record their reproductive h
 
 - Log Management: Users can edit existing log entries to update symptoms or flow type using prepopulated options, and delete existing log entries.
 
-- Symptom Severity: Based on number of selections made above, if there are more than 3+ symptoms selected an indicator will appear on the calendar.
-
 **Visual Representation**
 - The calendar view will highlight each day based on how many symptoms have been logged. This will help users identify trends.
 
@@ -46,40 +44,44 @@ The web application can be used by folks who wish to record their reproductive h
 - Knex
 
 ### APIs
-Office of Disease Prevention and Health Promotion: 
-https://odphp.health.gov/our-work/national-health-initiatives/health-literacy/consumer-health-content/free-web-content/apis-developers/api-documentation
+No external APIs used.
 
 ### Sitemap
 
 **Home Page**
 - Overview of the app's purpose and features
 - Calendar 
-- Resources preview 
-- Footer with contact information for technical support
+- Footer with contact information and quick links
 
 On the Homepage there will be the:  
 **Tracker**
 - Menstrual cycle tracking (e.g., period start/end, flow type)
 - Physical symptom logging (e.g., cramps, fatigue)
 - Mental health logging (e.g., mood tracking)
-- Color-coded calendar view to visualize symptom severity trends
+- Color-coded calendar view to visualize symptoms tracked
 
-There will then be a second page: 
+A second page:
+- About Us page touching about mission of App
+
+A third page: 
 **Resources Page**
 - Articles and guides on reproductive health conditions (e.g., endometriosis, PCOS)
 - Tips for managing symptoms effectively
-- Links to support groups or telehealth services
+
+A fourth page:
 - FAQs about app usage
 
 
 ### Mockups
 
 Inspiration for website layout and toggles: 
-#### Home Page
-![](./src/assets/images/homepage-inspo.png)
-![](./src/assets/images/calendar-inspo.png)
-![](./src/assets/images/resource-display-inspo.png)
-![](./src/assets/images/mobile-page-inspo.png)
+![](./src/assets/images/calendar-mockup.png)
+![](./src/assets/images/resource-mockup.png)
+![](./src/assets/images/mobile-navbar-mockup.png)
+![](./src/assets/images/tablet-navbar-mockup.png)
+![](./src/assets/images/color-palette.png)
+![](./src/assets/images/color-palette-2.png)
+![](./src/assets/images/symptom-inspo.png)
 
 ### Data
 
@@ -87,7 +89,7 @@ The app's data structure will include the following key entities:
 
 - **Health Logs**: Daily entries capturing period status (yes/no), flow type (light medium/heavy), physical symptoms, and mental states.
 - **Resources Data**: Articles, tips, and links categorized by health topics.
-- **Calendar Colors**: Severity-based color codes linked to daily logs.
+- **Calendar Colors**: Color coded tracking linked to daily logs.
 
 Relationships Between Data Points:
 - Each user has health log linked by date.
@@ -161,10 +163,6 @@ Response: DELETE /logs/103
 }
 ```
 
-**NOTE**
-- Severity is based on how many symptoms have been selected for particular day
-- Categories for resources can include topics like mental health (categoryId:1), physical symptoms (categoryId:2), or general health tips (categoryId:3).
-
 ## Roadmap
 
 ***WEEK 1***
@@ -209,53 +207,11 @@ Response: DELETE /logs/103
 
 ---
 ## Future Implementations
-- Implementing a chat bot to answer questions and find resources for users 
-- Implement a food tracker and utilize an external api to record nutritional value to better help educate users on what food is best for their medical conditions 
+- Implementing AI to answer questions and find resources for users/ predictive cycle potentially
 - Implement a sleep, water, weight tracker as well 
-- Show statistics on changes in the above metrics 
 - Create a community page for users to share their experiences 
 - implement JWT login capabilities 
-  **Feature: Create account**
-  - Implement register page + form
-  - Create POST /users/register endpoint
-**Feature: Login**
-  - Implement login page + form
-  - Create POST /users/login endpoint
-**Feature: Implement JWT tokens**
-  - Server: Update expected requests / responses on protected endpoints
-  - Client: Store JWT in local storage, include JWT on axios calls
-  
-***User Authentication:***
-**POST** /register: Register a new user.
-Request: 
-```
-{
-  "name": "Jane Doe",
-  "email": "jane.doe@example.com",
-  "password": "securePassword123"
-}
-```
-Response:
-```
-{
-  "message": "User registered successfully!",
-  "userId": 1
-}
-```
-**POST** /login: Authenticate a user and return a JWT.
-Request:
-```{
-  "email": "jane.doe@example.com",
-  "password": "securePassword123"
-}
-```
-Response:
-```
-{
-  "message": "Login successful!",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
+- implement user registration (CRUD) on front-end
 
 
 
