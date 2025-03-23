@@ -20,12 +20,15 @@ function Intro({ userId }) {
 
   return (
     <section className="intro">
-      <h2 className="intro__title">Hello {userName}</h2>
+      <div className="intro__greeting">
+      <h2 className="intro__title">Hello </h2>
+      <h2 className="intro__name">{userName},</h2>
+      </div>
       <div className="intro__pagraph">
         <p className="intro__text">
           {" "}
-          Start your journey today to a healthier you. Select a date and log
-          your menstrual cycle, track symptoms, and unlock patterns that will
+          Start your journey today to a healthier you. Select a date, log
+          your menstrual cycle, track your symptoms, and unlock patterns that will
           help you manage all the elements of your reproductive health.{" "}
         </p>
       </div>

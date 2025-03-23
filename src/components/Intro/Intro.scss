@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as*; 
 @use "../../styles/partials/variables" as *; 
+@use "../../styles/partials/typography" as *; 
 
 .intro {
   padding: 16px;
@@ -20,39 +21,63 @@
     min-height: 30vw; 
   }
 
+  &__greeting{
+    display:flex;
+    align-items:flex-end; 
+    gap: 8px; 
+  }
+
+  &__title{
+    font-family:"PlayfairDisplay";
+    font-weight:400; 
+    font-size:28px; 
+  }
+
+  &__name{
+    font-family:"PlayfairDisplay";
+    font-style:italic;
+    font-weight:400; 
+    font-size:28px;
+  }
+
   &__legend {
     margin: 0 16px;
   }
 
   &__subheader{
-    font-size:12px;
+    font-family:"Inter";
+    font-weight: 500;
+    font-size:16px; 
+    padding-bottom: 5px;
   }
 
   &__indicator {
-    font-size: 10px;
+    font-family:"Inter";
+    font-size:14px; 
 
     &--period {
       &::marker {
-        color: red;
-        font-size: 14px;
+        color: $cycle-color;
+        font-size: 18px;
       }
     }
     &--physical {
       &::marker {
-        color: green;
-        font-size: 14px;
+        color: $physical-color;
+        font-size: 18px;
       }
     }
     &--mental {
       &::marker {
-        color: blue;
-        font-size: 14px;
+        color:$mental-health-color;
+        font-size: 18px;
       }
     }
   }
 
   &__text {
-    font-size: 10px;
+    font-family:"Inter";
+    font-size: 14px;
     padding: 16px 0;
   }
 }
