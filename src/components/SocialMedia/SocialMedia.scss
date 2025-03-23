@@ -1,6 +1,13 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 .social {
     &__icon {
       padding-right: 1rem;
+      
+    @include desktop{
+      width:45px
     }
+    }
+
   }

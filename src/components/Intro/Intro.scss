@@ -18,7 +18,12 @@
   justify-content: center;
 
   @include tablet {
+    padding: 48px 36px;
     min-height: 30vw;
+  }
+
+  @include desktop{
+    padding: 48px 80px 48px 48px; 
   }
 
   &__greeting {
@@ -30,14 +35,44 @@
   &__title {
     font-family: "PlayfairDisplay";
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
+
+    @include tablet{
+      font-size: 24px;
+    }
+
+    @include desktop{
+      font-size:36px;
+    }
   }
 
   &__name {
     font-family: "PlayfairDisplay";
     font-style: italic;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
+
+    @include tablet{
+      font-size:24px;
+    }
+    
+    @include desktop{
+      font-size:36px;
+    }
+  }
+
+  &__text {
+    font-family: "Inter";
+    font-size: 12px;
+    padding: 16px 0;
+
+    @include tablet{
+      font-size: 15px;
+    }
+    @include desktop{
+      font-size: 18px;
+      padding: 16px 0 20px; 
+    }
   }
 
   &__legend {
@@ -49,6 +84,15 @@
     font-weight: 500;
     font-size: 14px;
     padding-bottom: 5px;
+
+    @include tablet{
+      font-size: 18px;
+    }
+    
+    @include desktop{
+      font-size: 22px;
+      padding-bottom: 12px; 
+    }
   }
 
   &__indicator {
@@ -73,11 +117,13 @@
         font-size: 18px;
       }
     }
+    @include tablet{
+      font-size: 15px;
+    }
+    @include desktop{
+      font-size: 18px;
+    }
   }
 
-  &__text {
-    font-family: "Inter";
-    font-size: 12px;
-    padding: 16px 0;
-  }
+
 }

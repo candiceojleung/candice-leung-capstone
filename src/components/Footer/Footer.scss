@@ -8,11 +8,11 @@
 
 
   @include tablet {
-    padding: 3rem 1.5rem;
+    padding: 36px 36px 24px;
   }
 
   @include desktop {
-    padding: 5rem 1.5rem 3rem;
+    padding: 48px 49px 24px;
   }
 
   &__logo {
@@ -27,19 +27,32 @@
     font-family:"PlayfairDisplay";
     font-size: 16px;
     margin-bottom: 0.5rem;
+
+    @include tablet{
+      font-size:18px; 
+      margin-bottom: 16px;
+    }
+
+    @include desktop{
+      margin-bottom: 24px;
+      font-size: 22px;
+    }
   }
 
   &__social {
     padding: 1rem 0;
+    @include tablet{
+      padding: 24px 0 36px; 
+    }
 
     @include desktop {
-      padding-top: 0;
+      padding-top: 24px;
     }
   }
 
   &__copyright {
     @include desktop {
-      padding-top: 3rem;
+      padding-top: 24px;
     }
   }
 
@@ -62,12 +75,15 @@
   }
 
   &__info {
+    font-family:"PlayfairDisplay";
+    font-weight:700;
     font-size: 10px;
     @include tablet {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       width: 80%;
+      font-size:12px;
     }
   }
 
@@ -90,11 +106,29 @@
     font-size: 12px;
     display: flex;
     gap: 4px;
-    list-style: none;
+    
+    @include tablet{
+      font-size:13px;
+      font-weight: 300; 
+      margin-bottom: 8px;
+    }
+
+    @include desktop{
+      font-size:15px;
+    }
   }
 
   &__item {
     font-family:"Inter"; 
     font-weight:500;
+    font-size: 12px; 
+
+    @include tablet{
+      font-size: 13px;
+    }
+    
+    @include desktop{
+      font-size:15px;
+    }
   }
 }

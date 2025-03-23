@@ -36,10 +36,6 @@ function Footer() {
     <section className="footer">
       <div className="footer__desktop-container">
         <div className="footer__tablet-container">
-          {/* <Link to="/">
-            {" "}
-            <p className="footer__logo">periodic.ally</p>
-          </Link> */}
         </div>
       </div>
       <div className="footer__info">

@@ -34,6 +34,10 @@
       border: 1px solid $primary-border-color;
       border-radius: 10px;
     }
+
+    @include desktop{
+      margin: 48px 36px 48px; 
+    }
   }
 
   &__wrapper {
@@ -45,6 +49,14 @@
   &__year {
     font-family: "Comfortaa";
     font-size: 20px;
+
+    @include tablet{
+      font-size:22px;
+    }
+
+    @include desktop{
+      font-size: 26px;
+    }
   }
 
   &__navigate {
@@ -71,7 +83,15 @@
     font-family: "Inter";
     text-align: center;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 14px;
+
+    @include tablet{
+      font-size: 16px; 
+    }
+
+    @include desktop{
+      font-size:18px;
+    }
   }
 
   &__days {
@@ -104,6 +124,9 @@
 
     &--today {
       font-weight: 700;
+    }
+    @include desktop{
+      font-size: 19px;
     }
   }
 

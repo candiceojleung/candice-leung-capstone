@@ -9,11 +9,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px 0 24px 16px;
+    padding: 36px 0 36px 36px;
   }
 
   @include desktop {
-    padding: 0 8.125rem;
+    padding: 48px 0 48px 48px; 
   }
 
   &__heading {
@@ -24,6 +24,9 @@
 
     @include tablet {
       padding-bottom: 24px;
+    }
+    @include desktop{
+      font-size: 28px; 
     }
   }
 
@@ -64,13 +67,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 14px;
-      padding: 12px;
+      font-size: 16px;
+      padding: 14px;
       border-top: 1px solid black;
+    }
+
+    @include desktop{
+      font-size: 20px; 
     }
     &--empty {
       @include tablet {
-        padding-right: 36px;
+        padding-right: 48px;
+      }
+      @include desktop{
+        padding-right: 80px;
       }
     }
 

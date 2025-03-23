@@ -20,6 +20,9 @@
     width: 55%;
     border-radius: 20px;
   }
+  @include desktop{
+    margin: 48px 36px 36px 0; 
+  }
 
   &__title {
     font-family: "Inter";
@@ -28,6 +31,11 @@
 
     @include tablet {
       margin: 0;
+      font-size: 22px; 
+    }
+
+    @include desktop{
+      font-size: 24px; 
     }
   }
 
@@ -40,6 +48,11 @@
     font-family: "Inter";
     font-size: 16px;
     margin: 16px 0 8px;
+
+    @include desktop{
+      font-size:20px; 
+      margin: 16px 0 16px;
+    }
   }
 
   &__submit {
@@ -61,6 +74,14 @@
 
     &:hover{
       background-color: $selected-color;
+    }
+
+    @include tablet{
+      font-size: 14px; 
+    }
+
+    @include desktop{
+      font-size: 15px;
     }
   }
 }

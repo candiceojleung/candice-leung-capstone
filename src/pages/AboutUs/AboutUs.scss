@@ -20,7 +20,7 @@
   }
 
   &__content {
-    min-height: 50vw;
+    min-height:50vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -39,21 +39,33 @@
     &:hover {
       opacity: 100%;
     }
+
+    @include desktop{
+      font-size: 42px;
+    }
   }
 
   &__title {
     font-family: "PlayfairDisplay";
     margin-bottom: 15px;
+
+    @include desktop{
+      font-size: 28px;
+    }
   }
 
   &__description {
     font-family: "Inter";
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.6;
 
     @include tablet {
-      font-size: 16px;
+      font-size: 18px;
       padding: 0 64px;
+    }
+    @include desktop{
+      font-size: 22px;
+      padding: 0 140px;
     }
   }
 }
