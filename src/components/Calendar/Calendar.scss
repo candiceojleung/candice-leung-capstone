@@ -30,7 +30,7 @@
     @include tablet {
       margin: 36px;
       width: 50%;
-      border: 1px solid $secondary-border;
+      border: 1px solid $primary-border;
       border-radius: 10px; 
 
     }
@@ -79,6 +79,7 @@
     grid-template-columns: repeat(7, 1fr);
     width: 100%;
     gap: 1px;
+    padding-bottom:24px;
 
     @include tablet {
       padding: 16px 0;
@@ -87,7 +88,7 @@
 
   &__number {
     font-family:"Inter";
-    background-color:$secondary-border;
+    background-color:$primary-border;
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;

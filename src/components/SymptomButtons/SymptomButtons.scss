@@ -1,22 +1,25 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
 .symptom-button {
-  margin: 2px; 
-    padding: 0.5rem 1rem;
-    border: 1px solid black;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-    font-size: 10px; 
-  
-    &.selected {
-      background-color:red; 
-      color: #E3E0DB; 
-    }
-  
+  font-family: "Inter";
+  margin: 2px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid $primary-border;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 10px;
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  &--selected {
+    background-color: red;
+    color:$secondary-text;
     &:hover {
-      background-color: #c57b6a; 
-    }
-  
-    &.selected:hover {
-      background-color: #b56e52; 
+      background-color:$hover-color;
     }
   }
+}

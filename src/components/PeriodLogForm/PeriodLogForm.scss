@@ -1,44 +1,63 @@
-@use "../../styles/partials/mixins" as*;
-@use "../../styles/partials/variables" as *; 
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
 
 .form {
-  padding:16px; 
+  padding: 24px 16px;
+  border: 1px solid $primary-border;
 
-  @include tablet{
-    padding: 24px 16px;
-    width:50%; 
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("../src/assets/images/form-pic.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include tablet {
+    padding:  24px;
+    margin: 36px 36px 36px 0;
+    width: 55%;
+    border-radius: 20px;
   }
 
-    &__title {
-      font-size: 20px;
-      margin: 1rem 0;
+  &__title {
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 20px;
 
-      @include tablet{
-        margin: 0; 
-      }
-    }
-
-    &__tracker{
-      display:flex;
-      flex-direction:column; 
-    }
-
-    &__question{
-      margin:16px 0; 
-    }
-
-    &__submit{
-      display: flex;
-      gap: 0.5rem;
-    }
-    &__actions {
-      margin-top:16px; 
-      font-size: 10px;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      gap:8px; 
+    @include tablet {
+      margin: 0;
     }
   }
+
+  &__tracker {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__question {
+    font-family: "Inter";
+    font-size: 14px;
+    margin: 16px 0 8px;
+  }
+
+  &__submit {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  &__actions {
+    font-family: "Comfortaa";
+    margin-top: 16px;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    gap: 8px;
+  }
+}
