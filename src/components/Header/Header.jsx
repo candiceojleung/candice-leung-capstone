@@ -11,7 +11,7 @@ function Header() {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "header__link header__link--active" : "header__link"
+            isActive ? "header__link header__link--selected" : "header__link"
           }
         >
           <img
@@ -24,7 +24,7 @@ function Header() {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? "header__link header__link--active" : "header__link"
+            isActive ? "header__link header__link--selected" : "header__link"
           }
         >
           {" "}
@@ -38,7 +38,7 @@ function Header() {
         <NavLink
           to="/resources"
           className={({ isActive }) =>
-            isActive ? "header__link header__link--active" : "header__link"
+            isActive ? "header__link header__link--selected" : "header__link"
           }
         >
           <img
@@ -51,7 +51,7 @@ function Header() {
         <NavLink
           to="/faqs"
           className={({ isActive }) =>
-            isActive ? "header__link header__link--active" : "header__link"
+            isActive ? "header__link header__link--selected" : "header__link"
           }
         >
           <img

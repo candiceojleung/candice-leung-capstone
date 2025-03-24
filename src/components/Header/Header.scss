@@ -40,7 +40,7 @@
     text-decoration: none;
     gap: 0.5rem;
 
-    &--active {
+    &--selected {
       @include tablet {
         font-weight: 700;
       }
@@ -74,7 +74,7 @@
 
     @include desktop {
       font-size: 1.25rem;
-      padding:14px 18px;
+      padding:0.875rem 1.125rem;
     }
     &--empty {
       @include tablet {

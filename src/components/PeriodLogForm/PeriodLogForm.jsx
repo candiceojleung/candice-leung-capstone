@@ -58,6 +58,7 @@ function PeriodLogForm({
       return;
     }
 
+//get all symptoms regardless of what exists in log
     const physicalSymptomIds = physicalSymptoms
       .map((name) => {
         const symptom = allSymptoms.physical.find((s) => s.name === name);
@@ -94,7 +95,7 @@ function PeriodLogForm({
       setError(null);
     } catch (error) {
       console.error("Error submitting period log:", error);
-      setError("Failed to save log. Please try again.");
+      setError("Failed to save log. Please refresh page and try again.");
     } finally {
       setIsLoading(false);
     }
@@ -102,7 +103,6 @@ function PeriodLogForm({
 
   const handleDelete = async () => {
     if (!existingLog) return;
-
     setIsLoading(true);
     setError(null);
 
@@ -113,9 +113,8 @@ function PeriodLogForm({
     } catch (error) {
       console.error("Error deleting period log:", error);
       setError("Failed to delete log. Please try again.");
-    } finally {
+    } 
       setIsLoading(false);
-    }
   };
 
   const toggleSymptom = (symptomName, isPhysical) => {
@@ -152,7 +151,7 @@ function PeriodLogForm({
             className="form__button"
           />
         </div>
-        {formError && <p className="form__error"><i class='bx bx-error-circle form__alert'></i>{formError}</p>}
+        {formError && <p className="form__error"><i className='bx bx-error-circle form__alert'></i>{formError}</p>}
       </div>
 
       {hasPeriod && (

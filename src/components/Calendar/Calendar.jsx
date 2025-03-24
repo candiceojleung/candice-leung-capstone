@@ -110,6 +110,7 @@ function Calendar({ userId }) {
   // Close the form
   const handleFormClose = () => {
     setShowForm(false);
+    setSelectedDate(null);
   };
 
   //Delete log
@@ -199,6 +200,7 @@ function Calendar({ userId }) {
           onDelete={handleLogDelete}
           userId={userId}
           selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
           existingLog={selectedLog}
           allSymptoms={allSymptoms}
         />
