@@ -1,5 +1,25 @@
 # periodic.ally   
 
+## Installation Instructions 
+
+1.  **Clone the repository:**
+
+    ```
+    git clone https://github.com/candiceojleung/candice-leung-capstone
+    ```
+
+2.  **Install dependencies:**
+
+    ```
+    npm install
+    ```
+
+3.  **Start the development server:**
+
+    ```
+    npm run dev
+    ```
+
 ## Overview
 
 periodic.ally is a web application designed to empower users to manage their reproductive health. This web application will serve as an ally to those navigating complex interplay between reproductive, physical and mental well-being.  By offering comprenhensive tracking, users can uncover potential correlation between different aspects of their health and gain insight to their body's unique needs and patterns. 
@@ -212,6 +232,7 @@ Response: DELETE /logs/103
 - Create a community page for users to share their experiences 
 - implement JWT login capabilities 
 - implement user registration (CRUD) on front-end
+
 
 
 
