@@ -26,10 +26,9 @@ function Intro({ userId }) {
       </div>
       <div className="intro__pagraph">
         <p className="intro__text">
-          {" "}
           Start your journey today to a healthier you. Select a date, log your
           menstrual cycle, track your symptoms, and unlock patterns that will
-          help you manage all the elements of your reproductive health.{" "}
+          help you manage all the elements of your reproductive health.
         </p>
       </div>
       <p className="intro__subheader">Calendar Indicators</p>

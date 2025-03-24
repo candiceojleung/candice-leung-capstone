@@ -98,18 +98,13 @@
     padding: 0;
   }
 
-  &__items {
+  &__items,
+  &__item {
     font-family: "Inter";
-    font-weight: 400;
-    margin-bottom: 0.25rem;
     font-size: 0.75rem;
-    display: flex;
-    gap: 0.25rem;
 
     @include tablet {
       font-size: 0.8125rem;
-      font-weight: 300;
-      margin-bottom: 0.5rem;
     }
 
     @include desktop {
@@ -117,17 +112,20 @@
     }
   }
 
-  &__item {
-    font-family: "Inter";
-    font-weight: 500;
-    font-size: 0.75rem;
+  &__items {
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+
+    display: flex;
+    gap: 0.25rem;
 
     @include tablet {
-      font-size: 0.8125rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
     }
+  }
 
-    @include desktop {
-      font-size: 0.9375rem;
-    }
+  &__item {
+    font-weight: 500;
   }
 }

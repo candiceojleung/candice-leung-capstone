@@ -57,10 +57,14 @@
     margin-right: 0.625rem;
   }
 
-  &__question {
+  &__question,
+  &__answer {
     font-family: "Inter";
-    font-weight: 500;
     font-size: 0.875rem;
+  }
+
+  &__question {
+    font-weight: 500;
 
     @include tablet {
       font-size: 1.125rem;
@@ -68,9 +72,7 @@
   }
 
   &__answer {
-    font-family: "Inter";
     font-weight: 300;
-    font-size: 0.875rem;
     margin-top: 0.625rem;
     margin-left: 1.5625rem;
 
