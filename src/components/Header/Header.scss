@@ -74,6 +74,7 @@
 
     @include desktop {
       font-size: 1.25rem;
+      padding:14px 18px;
     }
     &--empty {
       @include tablet {

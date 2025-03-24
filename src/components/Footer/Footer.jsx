@@ -29,8 +29,9 @@ function Footer() {
 
   const footerLinks = [
     { label: "About Us", path: "/about" },
-    { label: "FAQs", path: "/faqs" },
     { label: "Resources", path: "/resources" },
+    { label: "FAQs", path: "/faqs" },
+   
   ];
   return (
     <section className="footer">

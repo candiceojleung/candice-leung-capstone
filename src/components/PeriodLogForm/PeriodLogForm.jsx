@@ -19,7 +19,7 @@ function PeriodLogForm({
   onDelete,
 }) {
   const [hasPeriod, setHasPeriod] = useState(existingLog?.has_period ?? null);
-  const [flow, setFlow] = useState(existingLog?.flow || "");
+  const [flow, setFlow] = useState(existingLog?.flow ?? null);
   const [physicalSymptoms, setPhysicalSymptoms] = useState(
     existingLog?.physicalSymptoms || []
   );
@@ -28,18 +28,19 @@ function PeriodLogForm({
   );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(null);
 
   useEffect(() => {
     if (existingLog) {
       setHasPeriod(
         existingLog.has_period === true || existingLog.has_period === 1
       );
-      setFlow(existingLog.flow || "");
+      setFlow(existingLog.flow ?? null);
       setPhysicalSymptoms(existingLog.physicalSymptoms || []);
       setMentalConditions(existingLog.mentalConditions || []);
     } else {
       setHasPeriod(null);
-      setFlow("");
+      setFlow(null);
       setPhysicalSymptoms([]);
       setMentalConditions([]);
     }
@@ -49,6 +50,13 @@ function PeriodLogForm({
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+    setFormError(null);
+
+    if (hasPeriod === null) {
+      setFormError("Please select whether you have your period today.");
+      setIsLoading(false);
+      return;
+    }
 
     const physicalSymptomIds = physicalSymptoms
       .map((name) => {
@@ -134,16 +142,17 @@ function PeriodLogForm({
           <SymptomButtons
             symptom={{ id: "yes", name: "Yes" }}
             isSelected={hasPeriod === true}
-            onClick={() => setHasPeriod(true)}
+            onClick={() => {setHasPeriod(true);  setFormError(null);}}
             className="form__button"
           />
           <SymptomButtons
             symptom={{ id: "no", name: "No" }}
             isSelected={hasPeriod === false}
-            onClick={() => setHasPeriod(false)}
+            onClick={() => {setHasPeriod(false); setFormError(null);}}
             className="form__button"
           />
         </div>
+        {formError && <p className="form__error"><i class='bx bx-error-circle form__alert'></i>{formError}</p>}
       </div>
 
       {hasPeriod && (

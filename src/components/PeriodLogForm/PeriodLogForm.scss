@@ -84,4 +84,16 @@
       font-size: 0.9375rem;
     }
   }
+
+  &__error{
+    font-family:"Inter";
+    font-size:0.75rem;
+    margin-top: 0.5rem;
+    color: $cycle-color;
+  }
+
+  &__alert{
+    font-size:0.75rem;
+    padding-right:0.25rem;
+  }
 }

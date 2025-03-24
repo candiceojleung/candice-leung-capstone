@@ -59,7 +59,7 @@ function Header() {
             src="../src/assets/icons/faq.svg"
             alt="frequently asked questions icon"
           />
-          <p className="header__text">faq</p>
+          <p className="header__text">faqs</p>
         </NavLink>
         <p className="header__text header__text--empty"></p>
       </nav>

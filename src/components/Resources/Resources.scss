@@ -54,6 +54,10 @@
       flex: none;
       font-size: 0.875rem;
     }
+
+    @include desktop{
+      font-size:1rem;
+    }
   }
 
   &__articles {
